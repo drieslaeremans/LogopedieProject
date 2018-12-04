@@ -1,5 +1,7 @@
 package be.thomasmore.logopedieproject;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -26,6 +28,26 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    public void onButtonClickStart(View v) {
+        Intent intent = new Intent(this, HomepageActivity.class);
+        startActivity(intent);
+    }
+
+    public void onButtonClickInstellingen(View v) {
+//        Intent intent = new Intent(this, HomepageActivity.class);
+//        startActivity(intent);
+    }
+
+    public void onButtonClickAfsluiten(View v) {
+        exitApplication();
+    }
+
+
+    private void exitApplication() {
+        finish();
+        System.exit(0);
     }
 
     @Override

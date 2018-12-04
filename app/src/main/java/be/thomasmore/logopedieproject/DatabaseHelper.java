@@ -5,6 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static int DATABASE_VERSION = 1;
 
@@ -51,6 +54,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY (metingId) REFERENCES meting(id)," +
                 "FOREIGN KEY (woordId) REFERENCES woord(id) )";
         db.execSQL(CREATE_TABLE_WOORDINMETING);
+
+        insertWoorden(db);
+        insertKinderen(db);
     }
 
     @Override
@@ -135,7 +141,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Kind getKind(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
-
         Cursor c = db.query(
                 "kind",
                 new String[] {"id", "voornaam"},
@@ -145,14 +150,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         Kind kind = new Kind();
-
         if (c.moveToFirst()) {
             kind = new Kind(c.getLong(0), c.getString(1));
         }
-
         c.close();
         db.close();
         return kind;
+    }
 
+    public List<Kind> getKinderen() {
+        List<Kind> lijst = new ArrayList<Kind>();
+        String query = "SELECT * from kind ORDER BY voornaam";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Kind kind = new Kind(cursor.getLong(0), cursor.getString(1));
+                lijst.add(kind);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return lijst;
     }
 }
