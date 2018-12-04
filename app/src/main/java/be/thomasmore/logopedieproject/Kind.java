@@ -3,13 +3,17 @@ package be.thomasmore.logopedieproject;
 public class Kind {
     private long id;
     private String voornaam;
+    private String achternaam;
 
     public Kind() {
     }
 
-    public Kind(long id, String voornaam) {
+
+    public Kind(long id, String voornaam, String achternaam) {
         this.id = id;
         this.voornaam = voornaam;
+        this.achternaam = achternaam;
+
     }
 
     public long getId() {
@@ -30,6 +34,16 @@ public class Kind {
     public void setVoornaam(String voornaam) {
         this.voornaam = voornaam;
     }
+
+
+    public String getAchternaam() {
+        return achternaam;
+    }
+
+    public void setAchternaam(String achternaam) {
+        this.achternaam = achternaam;
+    }
+
 
     @Override
     public String toString() {

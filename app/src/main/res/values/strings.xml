@@ -2,7 +2,21 @@
     <string name="app_name">LogopedieProject</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_homepage">HomepageActivity</string>
-    <string name="homepage_button_start">Starten</string>
-    <string name="homepage_button_instellingen">Instellingen</string>
-    <string name="homepage_button_afsluiten">Afsluiten</string>
+    <string name="mainactivity_button_start">Starten</string>
+    <string name="mainactivity_button_instellingen">Instellingen</string>
+
+    <!-- Dialoog: afsluiten -->
+    <string name="mainactivity_button_afsluiten">Afsluiten</string>
+    <string name="mainactivity_dialog_afsluiten_message">Bent u zeker dat u de applicatie wilt afsluiten?</string>
+    <string name="mainactivity_dialog_afsluiten_positive">Ja</string>
+    <string name="mainactivity_dialog_afsluiten_negative">Nee</string>
+
+
+    <!-- Dialoog: kind toevoegen  -->
+    <string name="homepage_dialog_kindtoevoegen_message">Vul onderstaande gegevens in:</string>
+    <string name="homepage_dialog_kindtoevoegen_input_voornaam">Voornaam</string>
+    <string name="homepage_dialog_kindtoevoegen_input_achternaam">Achternaam</string>
+    <string name="homepage_dialog_kindtoevoegen_positive">Toevoegen</string>
+    <string name="homepage_dialog_kindtoevoegen_negative">Annuleren</string>
+
 </resources>

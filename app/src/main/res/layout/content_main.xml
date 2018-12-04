@@ -15,21 +15,21 @@
             android:id="@+id/buttonStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/homepage_button_start"
+            android:text="@string/mainactivity_button_start"
             android:onClick="onButtonClickStart"/>
 
         <Button
             android:id="@+id/buttonInstellingen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/homepage_button_instellingen"
+            android:text="@string/mainactivity_button_instellingen"
             android:onClick="onButtonClickInstellingen"/>
 
         <Button
             android:id="@+id/buttonAfsluiten"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/homepage_button_afsluiten"
+            android:text="@string/mainactivity_button_afsluiten"
             android:onClick="onButtonClickAfsluiten"/>
     </LinearLayout>
 

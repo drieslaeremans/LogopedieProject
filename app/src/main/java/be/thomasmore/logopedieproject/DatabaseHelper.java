@@ -1,5 +1,6 @@
 package be.thomasmore.logopedieproject;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,16 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static int DATABASE_VERSION = 1;
+    private static int DATABASE_VERSION = 7;
 
     private static final String DATABASE_NAME = "logopedie";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         String CREATE_TABLE_WOORD = "CREATE TABLE woord (" +
                 "id INTEGER PRIMARY KEY," +
                 "lidwoord TEXT," +
@@ -36,7 +40,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String CREATE_TABLE_KIND = "CREATE TABLE kind (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "voornaam TEXT)";
+                "voornaam TEXT," +
+                "achternaam TEXT)";
         db.execSQL(CREATE_TABLE_KIND);
 
         String CREATE_TABLE_METING = "CREATE TABLE meting (" +
@@ -136,8 +141,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void insertKinderen(SQLiteDatabase db) {
-        db.execSQL("INSERT INTO kind(voornaam) VALUES ('Tom')");
-        db.execSQL("INSERT INTO kind(voornaam) VALUES ('Dries')");
+        db.execSQL("INSERT INTO kind(voornaam, achternaam) VALUES ('Tom', 'Vdr')");
+        db.execSQL("INSERT INTO kind(voornaam, achternaam) VALUES ('Dries', 'L')");
     }
 
     public Kind getKind(long id) {
@@ -152,7 +157,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Kind kind = new Kind();
         if (c.moveToFirst()) {
-            kind = new Kind(c.getLong(0), c.getString(1));
+            kind = new Kind(c.getLong(0), c.getString(1), c.getString(2));
         }
         c.close();
         db.close();
@@ -168,12 +173,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                Kind kind = new Kind(cursor.getLong(0), cursor.getString(1));
+                Kind kind = new Kind(cursor.getLong(0), cursor.getString(1), cursor.getString(2));
                 lijst.add(kind);
             } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
         return lijst;
+    }
+
+    public long createKind(Kind kind)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("voornaam", kind.getVoornaam());
+        values.put("achternaam", kind.getAchternaam());
+
+        long id = db.insert("kind", null, values);
+
+        db.close();
+        return id;
     }
 }

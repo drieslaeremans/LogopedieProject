@@ -1,6 +1,7 @@
 package be.thomasmore.logopedieproject;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -41,13 +42,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButtonClickAfsluiten(View v) {
-        exitApplication();
+        exitApplicationDialog();
     }
 
 
-    private void exitApplication() {
-        finish();
-        System.exit(0);
+
+    private void exitApplicationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.mainactivity_dialog_afsluiten_message)
+                .setPositiveButton(R.string.mainactivity_dialog_afsluiten_positive, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                        System.exit(0);
+                    }
+                }).setNegativeButton(R.string.mainactivity_dialog_afsluiten_negative, null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override
