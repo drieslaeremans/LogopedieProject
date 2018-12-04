@@ -1,7 +1,6 @@
 package be.thomasmore.logopedieproject.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +9,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import be.thomasmore.logopedieproject.Activities.DetailsKindActivity;
-import be.thomasmore.logopedieproject.Activities.OverzichtKinderenActivity;
 import be.thomasmore.logopedieproject.Classes.Kind;
 import be.thomasmore.logopedieproject.R;
 
@@ -22,7 +19,7 @@ public class AdapterKind extends ArrayAdapter<Kind> {
 
     public AdapterKind(Context context, List<Kind> values)
     {
-        super(context, R.layout.adapterkindlistviewitem, values);
+        super(context, R.layout.adapter_kind_listview, values);
         this.context = context;
         this.values = values;
 
@@ -33,7 +30,7 @@ public class AdapterKind extends ArrayAdapter<Kind> {
     {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View rowView = inflater.inflate(R.layout.adapterkindlistviewitem, parent, false);
+        View rowView = inflater.inflate(R.layout.adapter_kind_listview, parent, false);
 
         final TextView textViewName = (TextView) rowView.findViewById(R.id.naam);
 

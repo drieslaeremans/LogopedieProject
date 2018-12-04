@@ -10,8 +10,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" android:orientation="vertical"
+        android:gravity="center_horizontal">
         <Button
+            android:layout_margin="10dp"
+            android:width="200dp"
             android:id="@+id/buttonStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,6 +22,8 @@
             android:onClick="onButtonClickStart"/>
 
         <Button
+            android:layout_margin="10dp"
+            android:width="200dp"
             android:id="@+id/buttonInstellingen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,11 +31,18 @@
             android:onClick="onButtonClickInstellingen"/>
 
         <Button
+            android:layout_margin="10dp"
+            android:width="200dp"
             android:id="@+id/buttonAfsluiten"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mainactivity_button_afsluiten"
             android:onClick="onButtonClickAfsluiten"/>
+
+
+
     </LinearLayout>
+
+
 
 </android.support.constraint.ConstraintLayout>

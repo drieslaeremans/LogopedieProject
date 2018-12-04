@@ -197,4 +197,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return id;
     }
+
+    public int updateKind(Kind kind)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("voornaam", kind.getVoornaam());
+        values.put("achternaam", kind.getAchternaam());
+
+
+        int numrows = db.update("kind", values, "id = ?", new String[]{ String.valueOf(kind.getId())});
+
+        db.close();
+
+        return numrows;
+    }
 }

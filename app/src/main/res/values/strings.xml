@@ -20,4 +20,13 @@
     <string name="overzichtkinderen_dialog_kindtoevoegen_negative">Annuleren</string>
     <string name="title_activity_details_kind">DetailsKindActivity</string>
 
+    <!-- Dialoog: kind updaten -->
+    <string name="overzichtkinderen_dialog_kindbewerken_message">Vul onderstaande gegevens in:</string>
+    <string name="overzichtkinderen_dialog_kindbewerken_input_voornaam">Voornaam</string>
+    <string name="overzichtkinderen_dialog_kindbewerken_input_achternaam">Achternaam</string>
+    <string name="overzichtkinderen_dialog_kindbewerken_positive">Bewerken</string>
+    <string name="overzichtkinderen_dialog_kindbewerken_negative">Annuleren</string>
+
+
+
 </resources>

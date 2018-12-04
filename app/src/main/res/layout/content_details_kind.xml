@@ -9,9 +9,23 @@
     tools:showIn="@layout/activity_details_kind">
 
 
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/naam"/>
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/naam"
+
+            android:textSize="30sp"
+            android:text="test"
+            android:textColor="#000"/>
+
+
+
+    </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>
