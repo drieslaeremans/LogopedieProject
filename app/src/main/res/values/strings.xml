@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">LogopedieProject</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_homepage">HomepageActivity</string>
+    <string name="title_activity_homepage">Overzicht kinderen</string>
     <string name="mainactivity_button_start">Starten</string>
     <string name="mainactivity_button_instellingen">Instellingen</string>
 
@@ -13,10 +13,11 @@
 
 
     <!-- Dialoog: kind toevoegen  -->
-    <string name="homepage_dialog_kindtoevoegen_message">Vul onderstaande gegevens in:</string>
-    <string name="homepage_dialog_kindtoevoegen_input_voornaam">Voornaam</string>
-    <string name="homepage_dialog_kindtoevoegen_input_achternaam">Achternaam</string>
-    <string name="homepage_dialog_kindtoevoegen_positive">Toevoegen</string>
-    <string name="homepage_dialog_kindtoevoegen_negative">Annuleren</string>
+    <string name="overzichtkinderen_dialog_kindtoevoegen_message">Vul onderstaande gegevens in:</string>
+    <string name="overzichtkinderen_dialog_kindtoevoegen_input_voornaam">Voornaam</string>
+    <string name="overzichtkinderen_dialog_kindtoevoegen_input_achternaam">Achternaam</string>
+    <string name="overzichtkinderen_dialog_kindtoevoegen_positive">Toevoegen</string>
+    <string name="overzichtkinderen_dialog_kindtoevoegen_negative">Annuleren</string>
+    <string name="title_activity_details_kind">DetailsKindActivity</string>
 
 </resources>

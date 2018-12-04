@@ -1,4 +1,4 @@
-package be.thomasmore.logopedieproject;
+package be.thomasmore.logopedieproject.Activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import be.thomasmore.logopedieproject.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,12 +34,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButtonClickStart(View v) {
-        Intent intent = new Intent(this, HomepageActivity.class);
+        Intent intent = new Intent(this, OverzichtKinderenActivity.class);
         startActivity(intent);
     }
 
     public void onButtonClickInstellingen(View v) {
-//        Intent intent = new Intent(this, HomepageActivity.class);
+//        Intent intent = new Intent(this, OverzichtKinderenActivity.class);
 //        startActivity(intent);
     }
 

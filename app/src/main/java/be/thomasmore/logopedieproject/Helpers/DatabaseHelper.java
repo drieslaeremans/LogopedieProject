@@ -1,4 +1,4 @@
-package be.thomasmore.logopedieproject;
+package be.thomasmore.logopedieproject.Helpers;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import be.thomasmore.logopedieproject.Classes.Kind;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static int DATABASE_VERSION = 7;
@@ -149,9 +151,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.query(
                 "kind",
-                new String[] {"id", "voornaam"},
+                new String[] {"id", "voornaam", "achternaam"},
                 "id = ?",
-                new String[] { String.valueOf("1")},
+                new String[] { String.valueOf(id) },
                 null, null, null, null);
 
 

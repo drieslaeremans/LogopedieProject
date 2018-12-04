@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,8 +20,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomepageActivity"
+            android:name=".Activities.OverzichtKinderenActivity"
             android:label="@string/title_activity_homepage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.DetailsKindActivity"
+            android:label="@string/title_activity_details_kind"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

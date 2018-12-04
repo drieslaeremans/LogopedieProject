@@ -1,4 +1,4 @@
-package be.thomasmore.logopedieproject;
+package be.thomasmore.logopedieproject.Classes;
 
 public class WoordInMeting {
     private long id;

@@ -1,4 +1,4 @@
-package be.thomasmore.logopedieproject;
+package be.thomasmore.logopedieproject.Classes;
 
 public class Kind {
     private long id;
@@ -36,7 +36,11 @@ public class Kind {
     }
 
 
+    // GET
     public String getAchternaam() {
+        if(achternaam == null)
+            return "";
+
         return achternaam;
     }
 
@@ -47,6 +51,6 @@ public class Kind {
 
     @Override
     public String toString() {
-        return getVoornaam().trim();
+        return getVoornaam().trim() + " " + getAchternaam().trim();
     }
 }
