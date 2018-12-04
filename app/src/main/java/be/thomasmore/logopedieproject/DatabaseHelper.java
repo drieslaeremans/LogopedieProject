@@ -51,6 +51,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY (metingId) REFERENCES meting(id)," +
                 "FOREIGN KEY (woordId) REFERENCES woord(id) )";
         db.execSQL(CREATE_TABLE_WOORDINMETING);
+
+
+        insertKinderen(db);
+        insertWoorden(db);
     }
 
     @Override

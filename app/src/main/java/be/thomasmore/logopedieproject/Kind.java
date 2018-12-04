@@ -21,6 +21,9 @@ public class Kind {
     }
 
     public String getVoornaam() {
+        if(voornaam == null)
+            return "Geen naam";
+
         return voornaam;
     }
 
@@ -30,6 +33,6 @@ public class Kind {
 
     @Override
     public String toString() {
-        return voornaam.trim();
+        return getVoornaam().trim();
     }
 }
