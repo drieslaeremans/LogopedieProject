@@ -1,6 +1,7 @@
 package be.thomasmore.logopedieproject;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -54,7 +55,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS a");
+        db.execSQL("DROP TABLE IF EXISTS woord");
+        db.execSQL("DROP TABLE IF EXISTS kind");
+        db.execSQL("DROP TABLE IF EXISTS meting");
+        db.execSQL("DROP TABLE IF EXISTS woordInMeting");
 
         onCreate(db);
     }
@@ -127,5 +131,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private void insertKinderen(SQLiteDatabase db) {
         db.execSQL("INSERT INTO kind(voornaam) VALUES ('Tom')");
         db.execSQL("INSERT INTO kind(voornaam) VALUES ('Dries')");
+    }
+
+    public Kind getKind(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor c = db.query(
+                "kind",
+                new String[] {"id", "voornaam"},
+                "id = ?",
+                new String[] { String.valueOf("1")},
+                null, null, null, null);
+
+
+        Kind kind = new Kind();
+
+        if (c.moveToFirst()) {
+            kind = new Kind(c.getLong(0), c.getString(1));
+        }
+
+        c.close();
+        db.close();
+        return kind;
+
     }
 }
