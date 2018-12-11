@@ -18,6 +18,7 @@ import be.thomasmore.logopedieproject.R;
 
 public class DetailsKindActivity extends AppCompatActivity {
 
+    private Kind kind;
     private DatabaseHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +26,6 @@ public class DetailsKindActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details_kind);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         db = new DatabaseHelper(this);
 
@@ -42,15 +41,10 @@ public class DetailsKindActivity extends AppCompatActivity {
 
     private void leesKind(long id)
     {
-        final Kind kind = this.db.getKind(id);
-
-
+        this.kind = this.db.getKind(id);
 
         TextView naam = (TextView) findViewById(R.id.naam);
-
-        naam.setText(kind.toString());
-
-
+        naam.setText(this.kind.toString());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -59,8 +53,6 @@ public class DetailsKindActivity extends AppCompatActivity {
                 updateKindDialog(kind);
             }
         });
-
-
     }
 
     private void updateKindDialog(final Kind kind)
@@ -123,6 +115,13 @@ public class DetailsKindActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void onButtonClickStartVoormeting(View v) {
+        Intent intent = new Intent(this, MetingActivity.class);
+        intent.putExtra("id", this.kind.getId());
+
+        startActivityForResult(intent, 2);
     }
 
 }

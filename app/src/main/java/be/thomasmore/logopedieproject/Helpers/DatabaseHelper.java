@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.thomasmore.logopedieproject.Classes.Kind;
+import be.thomasmore.logopedieproject.Classes.Woord;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static int DATABASE_VERSION = 7;
@@ -211,5 +212,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return numrows;
+    }
+
+    public List<Woord> getWoorden() {
+        List<Woord> lijst = new ArrayList<Woord>();
+        String query = "SELECT * from woord";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Woord woord = new Woord(
+                        cursor.getLong(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7),
+                        cursor.getInt(8),
+                        cursor.getInt(9),
+                        cursor.getInt(10),
+                        cursor.getInt(11) == 1
+                        );
+                lijst.add(woord);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return lijst;
     }
 }

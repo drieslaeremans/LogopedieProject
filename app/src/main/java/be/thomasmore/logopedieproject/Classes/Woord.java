@@ -8,17 +8,29 @@ public class Woord {
     private String juisteContext;
     private String fouteContext;
     private String lettergrepen;
+    private String semantischWeb;
+    private int conditie1;
+    private int conditie2;
+    private int conditie3;
+    private boolean oefenwoord;
 
     public Woord() {
     }
 
-    public Woord(long id, String woord, String definitie, String juisteContext, String fouteContext, String lettergrepen) {
+    public Woord(long id, String lidwoord, String woord, String definitie, String juisteContext, String fouteContext,
+                 String lettergrepen, String semantischWeb, int conditie1, int conditie2, int conditie3, boolean oefenwoord) {
         this.id = id;
+        this.lidwoord = lidwoord;
         this.woord = woord;
         this.definitie = definitie;
         this.juisteContext = juisteContext;
         this.fouteContext = fouteContext;
         this.lettergrepen = lettergrepen;
+        this.semantischWeb = semantischWeb;
+        this.conditie1 = conditie1;
+        this.conditie2 = conditie2;
+        this.conditie3 = conditie3;
+        this.oefenwoord = oefenwoord;
     }
 
     public long getId() {

@@ -24,7 +24,14 @@
             android:textColor="#000"/>
 
 
-
+        <Button
+            android:layout_margin="10dp"
+            android:width="200dp"
+            android:id="@+id/buttonAfsluiten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mainactivity_button_afsluiten"
+            android:onClick="onButtonClickStartVoormeting"/>
     </LinearLayout>
 
 
