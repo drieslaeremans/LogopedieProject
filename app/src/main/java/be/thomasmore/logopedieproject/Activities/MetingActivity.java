@@ -7,11 +7,17 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import be.thomasmore.logopedieproject.Classes.Kind;
 import be.thomasmore.logopedieproject.Classes.Woord;
+import be.thomasmore.logopedieproject.Classes.WoordInMeting;
 import be.thomasmore.logopedieproject.Helpers.DatabaseHelper;
 import be.thomasmore.logopedieproject.R;
 
@@ -20,6 +26,8 @@ public class MetingActivity extends AppCompatActivity {
     private Kind kind;
     private DatabaseHelper db;
     private List<Woord> woorden;
+    private int woord = 0;
+    private List<WoordInMeting> gemetenWoorden = new ArrayList<WoordInMeting>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,66 @@ public class MetingActivity extends AppCompatActivity {
     }
 
     private void startMeting() {
+        Collections.shuffle(woorden);
+
+        volgendeMeting();
+    }
+
+    private void volgendeMeting() {
+        Woord woord = woorden.get(this.woord);
+        TextView textViewWoord = (TextView) findViewById(R.id.woord);
+        textViewWoord.setText(woord.getWoord());
+
+        List<Integer> afbeeldingen = new ArrayList<Integer>();
+        afbeeldingen.add(this.woord);
+
+        for (int i = 0; i <= 2; i++) {
+            Random r = new Random();
+            int a = r.nextInt(10);
+
+            while (afbeeldingen.contains(a)) {
+                a = r.nextInt(10);
+            }
+            afbeeldingen.add(a);
+        }
+
+        Collections.shuffle(afbeeldingen);
+        for(int i = 0; i <= 3; i++) {
+            ImageView image = (ImageView) findViewById(
+                    getResources().getIdentifier(("afbeelding" + i), "id", getPackageName())
+            );
+            image.setTag(1, woord.getId());
+            image.setImageResource(
+                    getResources().getIdentifier("woord_" + woorden.get(afbeeldingen.get(i)).getWoord().toLowerCase(), "drawable", getPackageName())
+            );
+        }
+    }
+
+    public void onClickAfbeelding(View v) {
+        WoordInMeting woordInMeting = new WoordInMeting(
+                1,
+                this.woorden.get(this.woord).getId(),
+                1,
+                this.woorden.get(this.woord).getId() == (Long) v.getTag(1)
+        );
+
+        System.out.println("Antwoord is " + woordInMeting.isJuistOfFout());
+
+        this.woord++;
+        if(this.woord > woorden.size() -1) {
+            eindeMeting();
+        } else {
+            volgendeMeting();
+        }
+    }
+
+    private void eindeMeting() {
+
+    }
+
+    public void onClickWoordSpreken(View v) {
+        // Play sound
+        // https://medium.com/@ssaurel/implement-audio-streaming-in-android-applications-8758d3bc62f1
 
     }
 

@@ -81,6 +81,54 @@ public class Woord {
         this.lettergrepen = lettergrepen;
     }
 
+    public String getLidwoord() {
+        return lidwoord;
+    }
+
+    public void setLidwoord(String lidwoord) {
+        this.lidwoord = lidwoord;
+    }
+
+    public String getSemantischWeb() {
+        return semantischWeb;
+    }
+
+    public void setSemantischWeb(String semantischWeb) {
+        this.semantischWeb = semantischWeb;
+    }
+
+    public int getConditie1() {
+        return conditie1;
+    }
+
+    public void setConditie1(int conditie1) {
+        this.conditie1 = conditie1;
+    }
+
+    public int getConditie2() {
+        return conditie2;
+    }
+
+    public void setConditie2(int conditie2) {
+        this.conditie2 = conditie2;
+    }
+
+    public int getConditie3() {
+        return conditie3;
+    }
+
+    public void setConditie3(int conditie3) {
+        this.conditie3 = conditie3;
+    }
+
+    public boolean isOefenwoord() {
+        return oefenwoord;
+    }
+
+    public void setOefenwoord(boolean oefenwoord) {
+        this.oefenwoord = oefenwoord;
+    }
+
     @Override
     public String toString() {
         return woord;
