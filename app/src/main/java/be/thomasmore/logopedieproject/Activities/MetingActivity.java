@@ -84,7 +84,7 @@ public class MetingActivity extends AppCompatActivity {
             ImageView image = (ImageView) findViewById(
                     getResources().getIdentifier(("afbeelding" + i), "id", getPackageName())
             );
-            image.setTag(1, woord.getId());
+            image.setTag(1, woorden.get(afbeeldingen.get(i)).getId());
             image.setImageResource(
                     getResources().getIdentifier("woord_" + woorden.get(afbeeldingen.get(i)).getWoord().toLowerCase(), "drawable", getPackageName())
             );
