@@ -77,8 +77,11 @@ public class OverzichtKinderenActivity extends AppCompatActivity {
                 startActivity(intent);
 
 
+
             }
         });
+
+
 
     }
 

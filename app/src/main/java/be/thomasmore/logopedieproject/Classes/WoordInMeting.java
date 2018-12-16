@@ -1,6 +1,8 @@
 package be.thomasmore.logopedieproject.Classes;
 
-public class WoordInMeting {
+import java.io.Serializable;
+
+public class WoordInMeting implements Serializable {
     private long id;
     private long woordId;
     private long metingId;

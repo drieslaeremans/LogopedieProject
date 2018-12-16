@@ -27,6 +27,7 @@
     <string name="overzichtkinderen_dialog_kindbewerken_positive">Bewerken</string>
     <string name="overzichtkinderen_dialog_kindbewerken_negative">Annuleren</string>
     <string name="title_activity_meting">MetingActivity</string>
+    <string name="title_activity_na_meting">NaMetingActivity</string>
 
 
 </resources>

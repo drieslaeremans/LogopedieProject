@@ -30,6 +30,10 @@
         <activity
             android:name=".Activities.MetingActivity"
             android:label="@string/title_activity_meting"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.NaMetingActivity"
+            android:label="@string/title_activity_na_meting"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

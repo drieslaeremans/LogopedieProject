@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -84,7 +85,7 @@ public class MetingActivity extends AppCompatActivity {
             ImageView image = (ImageView) findViewById(
                     getResources().getIdentifier(("afbeelding" + i), "id", getPackageName())
             );
-            image.setTag(1, woorden.get(afbeeldingen.get(i)).getId());
+            image.setTag( woorden.get(afbeeldingen.get(i)).getId());
             image.setImageResource(
                     getResources().getIdentifier("woord_" + woorden.get(afbeeldingen.get(i)).getWoord().toLowerCase(), "drawable", getPackageName())
             );
@@ -96,8 +97,10 @@ public class MetingActivity extends AppCompatActivity {
                 1,
                 this.woorden.get(this.woord).getId(),
                 1,
-                this.woorden.get(this.woord).getId() == (Long) v.getTag(1)
+                this.woorden.get(this.woord).getId() == (Long) v.getTag()
         );
+
+        gemetenWoorden.add(woordInMeting);
 
         System.out.println("Antwoord is " + woordInMeting.isJuistOfFout());
 
@@ -110,6 +113,12 @@ public class MetingActivity extends AppCompatActivity {
     }
 
     private void eindeMeting() {
+
+        Intent intent = new Intent(this, NaMetingActivity.class);
+
+        intent.putExtra("list", (Serializable) gemetenWoorden);
+
+        startActivity(intent);
 
     }
 
