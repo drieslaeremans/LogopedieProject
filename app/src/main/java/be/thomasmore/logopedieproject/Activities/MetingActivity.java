@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Random;
 
 import be.thomasmore.logopedieproject.Classes.Kind;
+import be.thomasmore.logopedieproject.Classes.Meting;
 import be.thomasmore.logopedieproject.Classes.Woord;
 import be.thomasmore.logopedieproject.Classes.WoordInMeting;
 import be.thomasmore.logopedieproject.Helpers.DatabaseHelper;
@@ -29,6 +30,7 @@ public class MetingActivity extends AppCompatActivity {
     private List<Woord> woorden;
     private int woord = 0;
     private List<WoordInMeting> gemetenWoorden = new ArrayList<WoordInMeting>();
+    private Meting meting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class MetingActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
         Intent intent = getIntent();
         long id = intent.getLongExtra("id", 0);
+
+        meting = new Meting(0, intent.getStringExtra("typeMeting"), id);
 
         haalWoordenOp();
         leesKind(id);
@@ -58,7 +62,6 @@ public class MetingActivity extends AppCompatActivity {
 
     private void startMeting() {
         Collections.shuffle(woorden);
-
         volgendeMeting();
     }
 
@@ -117,8 +120,9 @@ public class MetingActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NaMetingActivity.class);
 
         intent.putExtra("list", (Serializable) gemetenWoorden);
+        intent.putExtra("meting", (Serializable) meting);
 
-        startActivity(intent);
+        startActivityForResult(intent, 1);
 
     }
 
@@ -126,6 +130,20 @@ public class MetingActivity extends AppCompatActivity {
         // Play sound
         // https://medium.com/@ssaurel/implement-audio-streaming-in-android-applications-8758d3bc62f1
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if(requestCode == 1) {
+            if(resultCode == RESULT_CANCELED) {
+
+            } else if (resultCode == RESULT_OK) {
+                Intent _intent = new Intent();
+
+                setResult(RESULT_OK, _intent);
+                finish();
+            }
+        }
     }
 
 }

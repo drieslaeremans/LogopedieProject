@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -27,13 +28,15 @@ public class DetailsKindActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Button button = (Button) findViewById(R.id.buttonOefeningen);
+        button.setEnabled(false);
+        button = (Button) findViewById(R.id.buttonNameting);
+        button.setEnabled(false);
+
         db = new DatabaseHelper(this);
 
         Intent intent = getIntent();
-
-
         long id = intent.getLongExtra("id", 0);
-
 
         if(id > 0)
             leesKind(id);
@@ -120,8 +123,22 @@ public class DetailsKindActivity extends AppCompatActivity {
     public void onButtonClickStartVoormeting(View v) {
         Intent intent = new Intent(this, MetingActivity.class);
         intent.putExtra("id", this.kind.getId());
+        intent.putExtra("typeMeting", "voormeting");
 
-        startActivityForResult(intent, 2);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if(requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                Button button = (Button) findViewById(R.id.buttonVoormeting);
+                button.setEnabled(false);
+
+                button = (Button) findViewById(R.id.buttonOefeningen);
+                button.setEnabled(true);
+            }
+        }
     }
 
 }

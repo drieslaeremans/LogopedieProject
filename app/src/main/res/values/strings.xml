@@ -5,6 +5,15 @@
     <string name="mainactivity_button_start">Starten</string>
     <string name="mainactivity_button_instellingen">Instellingen</string>
 
+
+    <!-- Activity: DetailsKind -->
+    <string name="detailskindactivity_voormeting">Voormeting starten</string>
+    <string name="detailskindactivity_oefeningen">Oefeningen starten</string>
+    <string name="detailskindactivity_nameting">Nameting starten</string>
+
+    <!-- Activity: NaMeting -->
+    <string name="nametingactivity_opslaan">Opslaan en Sluiten</string>
+
     <!-- Dialoog: afsluiten -->
     <string name="mainactivity_button_afsluiten">Afsluiten</string>
     <string name="mainactivity_dialog_afsluiten_message">Bent u zeker dat u de applicatie wilt afsluiten?</string>
