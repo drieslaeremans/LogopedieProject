@@ -12,9 +12,10 @@ public class SoundManager {
 
         int resourceId = context.getResources().getIdentifier(filename, "raw", context.getPackageName());
 
-
-        MediaPlayer sound = MediaPlayer.create(context, resourceId);
-        sound.start();
+        if( resourceId > 0) {
+            MediaPlayer sound = MediaPlayer.create(context, resourceId);
+            sound.start();
+        }
     }
 
 }

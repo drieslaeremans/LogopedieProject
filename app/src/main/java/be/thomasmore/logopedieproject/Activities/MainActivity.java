@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         SoundManager.Play(getApplicationContext(), "juistecontext_val");
     }
 
