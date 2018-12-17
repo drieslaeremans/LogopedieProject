@@ -1,6 +1,8 @@
 package be.thomasmore.logopedieproject.Classes;
 
-public class Meting {
+import java.io.Serializable;
+
+public class Meting implements Serializable {
     private long id;
     private String type;
     private long kindId;

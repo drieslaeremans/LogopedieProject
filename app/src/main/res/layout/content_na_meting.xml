@@ -8,11 +8,27 @@
     tools:context=".Activities.NaMetingActivity"
     tools:showIn="@layout/activity_na_meting">
 
-    <ListView
-        android:id="@+id/listviewWoordenInMeting"
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:dividerHeight="1dp">
-    </ListView>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ListView
+            android:id="@+id/listviewWoordenInMeting"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:dividerHeight="1dp">
+        </ListView>
+        <Button
+            android:id="@+id/buttonMetingOpslaan"
+            android:layout_alignParentBottom="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/nametingactivity_opslaan"
+            android:onClick="buttonClickMetingOpslaan"
+            android:layout_gravity="bottom"/>
+
+    </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>

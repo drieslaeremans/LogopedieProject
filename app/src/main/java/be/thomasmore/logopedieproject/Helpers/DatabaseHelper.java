@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.thomasmore.logopedieproject.Classes.Kind;
+import be.thomasmore.logopedieproject.Classes.Meting;
 import be.thomasmore.logopedieproject.Classes.Woord;
+import be.thomasmore.logopedieproject.Classes.WoordInMeting;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static int DATABASE_VERSION = 7;
@@ -243,5 +245,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return lijst;
+    }
+
+    public long createMeting(Meting meting) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("type", meting.getType());
+        values.put("kindId", meting.getKindId());
+
+        long id = db.insert("meting", null, values);
+
+        db.close();
+        return id;
+    }
+
+    public void createWoordenInMeting(List<WoordInMeting> gemetenWoorden) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        for(WoordInMeting gemetenWoord : gemetenWoorden) {
+            ContentValues values = new ContentValues();
+            values.put("woordId", gemetenWoord.getWoordId());
+            values.put("metingId", gemetenWoord.getMetingId());
+            values.put("juistOfFout", gemetenWoord.isJuistOfFout());
+
+            db.insert("woordInMeting", null, values);
+        }
+
+        db.close();
     }
 }
