@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/detailskindactivity_oefeningen"
-            android:onClick="onButtonClickStartVoormeting"/>
+            android:onClick="onButtonClickStartOefeningen"/>
 
         <Button
             android:layout_margin="10dp"
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/detailskindactivity_nameting"
-            android:onClick="onButtonClickStartVoormeting"/>
+            android:onClick="onButtonClickStartNameting"/>
     </LinearLayout>
 
 

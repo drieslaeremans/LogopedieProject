@@ -30,7 +30,8 @@ public class DetailsKindActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Button button = (Button) findViewById(R.id.buttonOefeningen);
-        button.setEnabled(false);
+       // button.setEnabled(false);
+        // effe afgezet, anders kan ik ni testen :D
         button = (Button) findViewById(R.id.buttonNameting);
         button.setEnabled(false);
 
@@ -152,5 +153,10 @@ public class DetailsKindActivity extends AppCompatActivity {
 
 
         startActivity(intent);
+    }
+
+
+    public void onButtonClickStartNameting(View v) {
+
     }
 }

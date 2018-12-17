@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import be.thomasmore.logopedieproject.Classes.Kind;
+import be.thomasmore.logopedieproject.Classes.SoundManager;
 import be.thomasmore.logopedieproject.Classes.Woord;
 import be.thomasmore.logopedieproject.Classes.WoordInMeting;
 import be.thomasmore.logopedieproject.R;
@@ -32,6 +33,8 @@ public class Oefening1Activity extends AppCompatActivity {
 
         leesWoord();
 
+
+
     }
 
     private void leesWoord()
@@ -45,5 +48,8 @@ public class Oefening1Activity extends AppCompatActivity {
         image.setImageResource(
                 getResources().getIdentifier("woord_" + woord.getWoord().toLowerCase(), "drawable", getPackageName())
         );
+
+
+        SoundManager.Play(getApplicationContext(), "woord_" + woord.getWoord());
     }
 }

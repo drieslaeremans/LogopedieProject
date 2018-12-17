@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        SoundManager.Play(getApplicationContext(), "juistecontext_val");
     }
 
     public void onButtonClickStart(View v) {
