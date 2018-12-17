@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import be.thomasmore.logopedieproject.Classes.Kind;
+import be.thomasmore.logopedieproject.Classes.Woord;
 import be.thomasmore.logopedieproject.Helpers.DatabaseHelper;
 import be.thomasmore.logopedieproject.R;
 
@@ -124,4 +125,15 @@ public class DetailsKindActivity extends AppCompatActivity {
         startActivityForResult(intent, 2);
     }
 
+    public void onButtonClickStartOefeningen(View v) {
+        Intent intent = new Intent(this, Oefening1Activity.class);
+        intent.putExtra("kind", this.kind);
+
+        Woord testwoord = db.getWoorden().get(3); // tijdelijk random woord
+
+        intent.putExtra("woord", testwoord);
+
+
+        startActivity(intent);
+    }
 }

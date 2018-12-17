@@ -27,11 +27,20 @@
         <Button
             android:layout_margin="10dp"
             android:width="200dp"
-            android:id="@+id/buttonAfsluiten"
+            android:id="@+id/buttonVoormeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/mainactivity_button_afsluiten"
+            android:text="Voormeting"
             android:onClick="onButtonClickStartVoormeting"/>
+        <Button
+            android:layout_margin="10dp"
+            android:width="200dp"
+            android:id="@+id/buttonOefeningen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oefeningen"
+            android:onClick="onButtonClickStartOefeningen"/>
+
     </LinearLayout>
 
 

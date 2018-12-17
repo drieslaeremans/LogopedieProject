@@ -1,6 +1,8 @@
 package be.thomasmore.logopedieproject.Classes;
 
-public class Kind {
+import java.io.Serializable;
+
+public class Kind implements Serializable {
     private long id;
     private String voornaam;
     private String achternaam;

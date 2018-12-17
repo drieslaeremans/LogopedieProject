@@ -1,6 +1,8 @@
 package be.thomasmore.logopedieproject.Classes;
 
-public class Woord {
+import java.io.Serializable;
+
+public class Woord implements Serializable {
     private long id;
     private String lidwoord;
     private String woord;

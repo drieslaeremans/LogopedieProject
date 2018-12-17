@@ -4,6 +4,10 @@
     <string name="title_activity_homepage">Overzicht kinderen</string>
     <string name="mainactivity_button_start">Starten</string>
     <string name="mainactivity_button_instellingen">Instellingen</string>
+    <string name="title_activity_meting">Meting</string>
+    <string name="title_activity_na_meting">Nameting: samenvatting</string>
+    <string name="title_activity_oefening1">Oefening 1</string>
+
 
     <!-- Dialoog: afsluiten -->
     <string name="mainactivity_button_afsluiten">Afsluiten</string>
@@ -26,8 +30,6 @@
     <string name="overzichtkinderen_dialog_kindbewerken_input_achternaam">Achternaam</string>
     <string name="overzichtkinderen_dialog_kindbewerken_positive">Bewerken</string>
     <string name="overzichtkinderen_dialog_kindbewerken_negative">Annuleren</string>
-    <string name="title_activity_meting">MetingActivity</string>
-    <string name="title_activity_na_meting">NaMetingActivity</string>
 
 
 </resources>
