@@ -31,6 +31,7 @@ public class Oefening1Activity extends AppCompatActivity {
         woord = (Woord) intent.getSerializableExtra("woord");
 
         leesWoord();
+
     }
 
     private void leesWoord()

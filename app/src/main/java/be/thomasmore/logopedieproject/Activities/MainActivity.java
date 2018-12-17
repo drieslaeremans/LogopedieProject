@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import be.thomasmore.logopedieproject.Classes.SoundManager;
 import be.thomasmore.logopedieproject.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,9 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        MediaPlayer sound = MediaPlayer.create(MainActivity.this,R.raw.definitie_duikbril);
-        sound.start();
-
+        SoundManager.Play(getApplicationContext(), "juistecontext_val");
     }
 
     public void onButtonClickStart(View v) {
