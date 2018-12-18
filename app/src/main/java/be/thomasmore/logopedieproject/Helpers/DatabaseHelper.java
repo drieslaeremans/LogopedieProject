@@ -247,6 +247,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return lijst;
     }
 
+    public Woord getWoord(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.query(
+                "woord",
+                new String[] {
+                        "id", "lidwoord", "woord",
+                        "definitie", "juisteContext", "fouteContext",
+                        "lettergrepen", "semantischWeb",
+                        "conditie1", "conditie2", "conditie3",
+                        "oefenwoord"
+                },
+                "id = ?",
+                new String[] { String.valueOf(id) },
+                null, null, null, null);
+
+
+        Woord woord = new Woord();
+        if (c.moveToFirst()) {
+            woord = new Woord(
+                    c.getLong(0),
+                    c.getString(1),
+                    c.getString(2),
+                    c.getString(3),
+                    c.getString(4),
+                    c.getString(5),
+                    c.getString(6),
+                    c.getString(7),
+                    c.getInt(8),
+                    c.getInt(9),
+                    c.getInt(10),
+                    c.getInt(11) == 1
+            );
+        }
+        c.close();
+        db.close();
+        return woord;
+    }
+
     public long createMeting(Meting meting) {
         SQLiteDatabase db = this.getReadableDatabase();
 

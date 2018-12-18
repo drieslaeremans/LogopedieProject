@@ -166,7 +166,7 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
 
                     image.setBackgroundDrawable(null);
                 }
-                
+
                 image.setImageResource( getResources().getIdentifier("woord_" + woord.getWoord().toLowerCase(), "drawable", getPackageName()));
             }
         }, 2000);
