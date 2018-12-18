@@ -2,29 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants"
-
-   >
+    android:descendantFocusability="blocksDescendants">
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="20sp"
-            android:textColor="#000"
-            android:id="@+id/naam"
-            android:padding="10dp"
-            android:text="test"
-           >
-
-        </TextView>
-        <ImageButton
-            android:id="@+id/edit"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@android:drawable/ic_menu_search"
-            android:layout_alignParentRight="true"/>
-
-
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:id="@+id/naam"
+        android:padding="10dp"
+        android:text="test"/>
+    <TextView
+        android:id="@+id/resultaat"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text=""
+        android:layout_alignParentRight="true"/>
 </RelativeLayout>

@@ -18,6 +18,7 @@ import java.util.Random;
 
 import be.thomasmore.logopedieproject.Classes.Kind;
 import be.thomasmore.logopedieproject.Classes.Meting;
+import be.thomasmore.logopedieproject.Classes.SoundManager;
 import be.thomasmore.logopedieproject.Classes.Woord;
 import be.thomasmore.logopedieproject.Classes.WoordInMeting;
 import be.thomasmore.logopedieproject.Helpers.DatabaseHelper;
@@ -93,6 +94,8 @@ public class MetingActivity extends AppCompatActivity {
                     getResources().getIdentifier("woord_" + woorden.get(afbeeldingen.get(i)).getWoord().toLowerCase(), "drawable", getPackageName())
             );
         }
+
+        spreek("woord_" + woorden.get(this.woord).getWoord().toLowerCase());
     }
 
     public void onClickAfbeelding(View v) {
@@ -127,9 +130,11 @@ public class MetingActivity extends AppCompatActivity {
     }
 
     public void onClickWoordSpreken(View v) {
-        // Play sound
-        // https://medium.com/@ssaurel/implement-audio-streaming-in-android-applications-8758d3bc62f1
+        spreek("woord_" + woorden.get(woord).getWoord().toLowerCase());
+    }
 
+    private void spreek(String bestand) {
+        SoundManager.Play(getApplicationContext(), bestand);
     }
 
     @Override
