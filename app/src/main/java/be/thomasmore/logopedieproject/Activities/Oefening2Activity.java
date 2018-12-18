@@ -13,17 +13,16 @@ import android.widget.TextView;
 import be.thomasmore.logopedieproject.Classes.Kind;
 import be.thomasmore.logopedieproject.Classes.SoundManager;
 import be.thomasmore.logopedieproject.Classes.Woord;
-import be.thomasmore.logopedieproject.Classes.WoordInMeting;
 import be.thomasmore.logopedieproject.R;
 
-public class Oefening1Activity extends AppCompatActivity {
+public class Oefening2Activity extends AppCompatActivity {
     private Kind kind;
     private Woord woord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oefening1);
+        setContentView(R.layout.activity_oefening2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
@@ -35,9 +34,7 @@ public class Oefening1Activity extends AppCompatActivity {
 
         SoundManager soundManager = new SoundManager(this);
 
-        soundManager.Play("woord_" + woord.getWoord());
-
-
+        soundManager.Play( "woord_" + woord.getWoord());
     }
 
     private void leesWoord()
@@ -55,10 +52,11 @@ public class Oefening1Activity extends AppCompatActivity {
 
     public void volgendeOefening(View v)
     {
-        Intent intent = new Intent(this, Oefening2Activity.class);
-        intent.putExtra("woord", woord);
+        Intent intent = new Intent(this, Oefening3Activity.class);
+        intent.putExtra("woord", woord );
         intent.putExtra("kind", kind);
 
         startActivity(intent);
     }
+
 }

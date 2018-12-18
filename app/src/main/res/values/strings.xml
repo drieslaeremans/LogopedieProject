@@ -7,7 +7,9 @@
     <string name="title_activity_meting">Meting</string>
     <string name="title_activity_na_meting">Nameting: samenvatting</string>
     <string name="title_activity_oefening1">Oefening 1</string>
-
+    <string name="title_activity_oefening2">Oefening 2</string>
+    <string name="title_activity_oefening3">Oefening 3</string>
+    <string name="title_activity_oefening4">Oefening 4</string>
 
 
     <!-- Activity: DetailsKind -->
@@ -20,7 +22,7 @@
 
     <!-- Dialoog: afsluiten -->
     <string name="mainactivity_button_afsluiten">Afsluiten</string>
-    <string name="mainactivity_dialog_afsluiten_message">Bent u zeker dat u de applicatie wilt afsluiten?</string>
+    <string name="mainactivity_dialog_afsluiten_message">Applicatie afsluiten?</string>
     <string name="mainactivity_dialog_afsluiten_positive">Ja</string>
     <string name="mainactivity_dialog_afsluiten_negative">Nee</string>
 
@@ -39,6 +41,7 @@
     <string name="overzichtkinderen_dialog_kindbewerken_input_achternaam">Achternaam</string>
     <string name="overzichtkinderen_dialog_kindbewerken_positive">Bewerken</string>
     <string name="overzichtkinderen_dialog_kindbewerken_negative">Annuleren</string>
+    <string name="title_activity_oefening5">Oefening5Activity</string>
 
 
 </resources>

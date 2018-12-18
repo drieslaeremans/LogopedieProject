@@ -38,6 +38,22 @@
         <activity
             android:name=".Activities.Oefening1Activity"
             android:label="@string/title_activity_oefening1"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.Oefening2Activity"
+            android:label="@string/title_activity_oefening2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.Oefening3Activity"
+            android:label="@string/title_activity_oefening3"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.Oefening4Activity"
+            android:label="@string/title_activity_oefening4"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.Oefening5Activity"
+            android:label="@string/title_activity_oefening5"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

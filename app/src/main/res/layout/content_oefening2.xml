@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Activities.Oefening1Activity"
-    tools:showIn="@layout/activity_oefening1">
-
+    tools:context=".Activities.Oefening2Activity"
+    tools:showIn="@layout/activity_oefening2">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
@@ -23,7 +22,8 @@
             android:textSize="30sp"
             android:text="Doelwoord"/>
 
-        <ImageButton
+
+        <android.support.v7.widget.AppCompatImageButton
             android:background="#00000000"
             android:onClick="volgendeOefening"
             android:layout_marginTop="50dp"
@@ -32,5 +32,4 @@
             android:scaleType="center"
             android:id="@+id/afbeelding"/>
     </LinearLayout>
-
 </android.support.constraint.ConstraintLayout>
