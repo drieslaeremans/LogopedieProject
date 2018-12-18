@@ -32,6 +32,7 @@ public class MetingActivity extends AppCompatActivity {
     private int woord = 0;
     private List<WoordInMeting> gemetenWoorden = new ArrayList<WoordInMeting>();
     private Meting meting;
+    private SoundManager soundManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,8 @@ public class MetingActivity extends AppCompatActivity {
 
         meting = new Meting(0, intent.getStringExtra("typeMeting"), id);
 
+
+        soundManager = new SoundManager(this);
         haalWoordenOp();
         leesKind(id);
 
@@ -134,7 +137,7 @@ public class MetingActivity extends AppCompatActivity {
     }
 
     private void spreek(String bestand) {
-        SoundManager.Play(getApplicationContext(), bestand);
+        soundManager.Play(bestand);
     }
 
     @Override
