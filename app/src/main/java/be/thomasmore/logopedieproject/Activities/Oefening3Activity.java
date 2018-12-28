@@ -16,6 +16,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import be.thomasmore.logopedieproject.Classes.Kind;
+import be.thomasmore.logopedieproject.Classes.Oefening;
 import be.thomasmore.logopedieproject.Classes.SoundManager;
 import be.thomasmore.logopedieproject.Classes.Woord;
 import be.thomasmore.logopedieproject.R;
@@ -24,6 +25,7 @@ public class Oefening3Activity extends AppCompatActivity {
 
     private Kind kind;
     private Woord woord;
+    private Oefening oefening;
     SoundManager soundManager;
 
     ImageButton duimPositief;
@@ -40,10 +42,9 @@ public class Oefening3Activity extends AppCompatActivity {
 
         kind = (Kind) intent.getSerializableExtra("kind");
         woord = (Woord) intent.getSerializableExtra("woord");
-
+        oefening = (Oefening) intent.getSerializableExtra("oefening");
 
         soundManager = new SoundManager(this);
-
 
         Random r = new Random();
         contextType = r.nextBoolean();
@@ -118,8 +119,9 @@ public class Oefening3Activity extends AppCompatActivity {
         Intent intent = new Intent(this, Oefening4Activity.class);
         intent.putExtra("woord", woord );
         intent.putExtra("kind", kind);
+        intent.putExtra("oefening", oefening);
 
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
     public void checkAntwoord( boolean invoer )
@@ -143,6 +145,7 @@ public class Oefening3Activity extends AppCompatActivity {
             else
                 duimPositief.setVisibility(View.INVISIBLE);
 
+            oefening.setOefening3(true);
 
             new Timer().schedule(new TimerTask() {
                 @Override
@@ -151,9 +154,9 @@ public class Oefening3Activity extends AppCompatActivity {
                 }
             }, 2000);
 
-
         } else
         {
+            oefening.setOefening3(false);
             soundManager.AddQueue( "zin_oepsdatwasnietjuist");
             soundManager.PlayQueue();
         }
@@ -173,5 +176,27 @@ public class Oefening3Activity extends AppCompatActivity {
     {
         System.out.println("Oefening3: duim positief aangeduid");
         checkAntwoord(true);
+    }
+
+    @Override
+    public void onBackPressed() {
+        soundManager.ResetQueue();
+        soundManager.stopPlaying();
+        setResult(RESULT_CANCELED);
+        finish();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_CANCELED) {
+                setResult(RESULT_CANCELED);
+                finish();
+            } else if (resultCode == RESULT_OK) {
+                Intent _intent = new Intent();
+                setResult(RESULT_OK, _intent);
+                finish();
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import be.thomasmore.logopedieproject.Classes.Kind;
+import be.thomasmore.logopedieproject.Classes.Oefening;
 import be.thomasmore.logopedieproject.Classes.SoundManager;
 import be.thomasmore.logopedieproject.Classes.Woord;
 import be.thomasmore.logopedieproject.Helpers.DatabaseHelper;
@@ -21,7 +22,7 @@ public class OefeningPreteaching extends AppCompatActivity {
 
     private Kind kind;
     private Woord woord;
-    private SoundManager sm;
+    private SoundManager soundManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class OefeningPreteaching extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        sm = new SoundManager(this);
+        soundManager = new SoundManager(this);
 
         Intent intent = getIntent();
         this.woord = (Woord) intent.getSerializableExtra("woord");
@@ -42,8 +43,12 @@ public class OefeningPreteaching extends AppCompatActivity {
 
     /*
         Tekst nog voorzien voor preteachingplaat
-        "...preteaching..."
-        "...hier gaan we dan..."
+        "Hallo ik ben Kaat. Ik ga vandaag samen met mijn vriendjes naar het bos,
+        op groot avontuur. Maar ik zoek nog een iemand die graag met mij mee
+        wilt gaan. Samen gaan we op zoek naar heel veel nieuwe dingen.
+        Wil jij graag met ons mee gaan? …. Ja? …  Super leuk! Klik maar op de
+        bomen als je wilt starten.
+        "Hier gaan we"
      */
 
     private void setPreteaching() {
@@ -52,11 +57,11 @@ public class OefeningPreteaching extends AppCompatActivity {
                 getResources().getIdentifier("preteaching", "drawable", getPackageName())
         );
 
-        sm.Play("juistecontext_" + woord.getWoord().toLowerCase());
+        soundManager.Play("juistecontext_" + woord.getWoord().toLowerCase());
     }
 
     public void onClickPreteaching(View v) {
-        if (!sm.isPlaying()) {
+        if (!soundManager.isPlaying()) {
             ImageView imageViewPreteaching = (ImageView) findViewById(R.id.preteaching_plaat);
             imageViewPreteaching.setImageResource(android.R.color.transparent);
 
@@ -79,8 +84,33 @@ public class OefeningPreteaching extends AppCompatActivity {
         intent.putExtra("kind", this.kind);
         intent.putExtra("woord", this.woord);
 
+        Oefening oefening = new Oefening();
+        oefening.setOefenwoordId(this.woord.getId());
+        intent.putExtra("oefening", oefening);
 
-        startActivity(intent);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onBackPressed() {
+        soundManager.ResetQueue();
+        soundManager.stopPlaying();
+        setResult(RESULT_CANCELED);
+        finish();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_CANCELED) {
+                setResult(RESULT_CANCELED);
+                finish();
+            } else if (resultCode == RESULT_OK) {
+                Intent _intent = new Intent();
+                setResult(RESULT_OK, _intent);
+                finish();
+            }
+        }
     }
 
 

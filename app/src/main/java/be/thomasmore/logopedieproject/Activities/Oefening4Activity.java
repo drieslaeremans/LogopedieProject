@@ -25,6 +25,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import be.thomasmore.logopedieproject.Classes.Kind;
+import be.thomasmore.logopedieproject.Classes.Oefening;
 import be.thomasmore.logopedieproject.Classes.SoundManager;
 import be.thomasmore.logopedieproject.Classes.Woord;
 import be.thomasmore.logopedieproject.R;
@@ -34,6 +35,7 @@ import static java.lang.Thread.sleep;
 public class Oefening4Activity extends AppCompatActivity implements ImageView.OnClickListener {
     private Kind kind;
     private Woord woord;
+    private Oefening oefening;
     private List<String> semantischeWoorden;
     private String fouteWoord;
     private List<String> antwoorden = new ArrayList<String>();
@@ -50,6 +52,7 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
         Intent intent = getIntent();
         woord = (Woord) intent.getSerializableExtra("woord");
         kind = (Kind) intent.getSerializableExtra("kind");
+        oefening = (Oefening) intent.getSerializableExtra("oefening");
 
         soundManager = new SoundManager(this);
 
@@ -103,14 +106,10 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
         drawable.setColor(Color.WHITE);
         button.setBackgroundDrawable(drawable);
 
-
-
         String woord = (String) button.getTag();
 
         System.out.println("Oefening4: geselecteerd: " + woord);
         antwoorden.add(woord);
-
-
 
         if(antwoorden.size() == 3)
             checkAntwoorden();
@@ -126,7 +125,6 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
                 correct =false;
         }
 
-
         if(correct)
             onCorrecteAntwoorden();
         else
@@ -139,18 +137,16 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
 
         intent.putExtra("kind", kind);
         intent.putExtra("woord", woord);
+        oefening.setOefening4(true);
+        intent.putExtra("oefening", oefening);
 
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
     private void onFouteAntwoorden()
     {
-
-
         final ImageButton image = (ImageButton) findViewById(R.id.afbeelding);
         image.setImageResource( getResources().getIdentifier("smiley_sad", "drawable", getPackageName()));
-
-
 
         soundManager.ResetQueue();
         soundManager.AddQueue( "zin_oepsdatwasnietjuist");
@@ -171,12 +167,29 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
             }
         }, 2000);
 
-
-
-
-
-
         antwoorden.clear();
+    }
+
+    @Override
+    public void onBackPressed() {
+        soundManager.ResetQueue();
+        soundManager.stopPlaying();
+        setResult(RESULT_CANCELED);
+        finish();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_CANCELED) {
+                setResult(RESULT_CANCELED);
+                finish();
+            } else if (resultCode == RESULT_OK) {
+                Intent _intent = new Intent();
+                setResult(RESULT_OK, _intent);
+                finish();
+            }
+        }
     }
 }
 

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import be.thomasmore.logopedieproject.Classes.Kind;
+import be.thomasmore.logopedieproject.Classes.Oefening;
 import be.thomasmore.logopedieproject.Classes.SoundManager;
 import be.thomasmore.logopedieproject.Classes.Woord;
 import be.thomasmore.logopedieproject.Classes.WoordInMeting;
@@ -19,6 +20,8 @@ import be.thomasmore.logopedieproject.R;
 public class Oefening1Activity extends AppCompatActivity {
     private Kind kind;
     private Woord woord;
+    private Oefening oefening;
+    SoundManager soundManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +33,11 @@ public class Oefening1Activity extends AppCompatActivity {
 
         kind = (Kind) intent.getSerializableExtra("kind");
         woord = (Woord) intent.getSerializableExtra("woord");
+        oefening = (Oefening) intent.getSerializableExtra("oefening");
 
         leesWoord();
 
-        SoundManager soundManager = new SoundManager(this);
+        soundManager = new SoundManager(this);
 
         soundManager.Play("woord_" + woord.getWoord().toLowerCase());
     }
@@ -56,7 +60,32 @@ public class Oefening1Activity extends AppCompatActivity {
         Intent intent = new Intent(this, Oefening2Activity.class);
         intent.putExtra("woord", woord);
         intent.putExtra("kind", kind);
+        oefening.setOefening1(true);
+        intent.putExtra("oefening", oefening);
 
-        startActivity(intent);
+        startActivityForResult(intent, 1);
+//        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        soundManager.ResetQueue();
+        soundManager.stopPlaying();
+        setResult(RESULT_CANCELED);
+        finish();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_CANCELED) {
+                setResult(RESULT_CANCELED);
+                finish();
+            } else if (resultCode == RESULT_OK) {
+                Intent _intent = new Intent();
+                setResult(RESULT_OK, _intent);
+                finish();
+            }
+        }
     }
 }

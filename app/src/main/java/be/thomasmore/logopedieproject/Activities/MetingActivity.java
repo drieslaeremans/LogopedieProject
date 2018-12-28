@@ -126,7 +126,7 @@ public class MetingActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NaMetingActivity.class);
 
         intent.putExtra("list", (Serializable) gemetenWoorden);
-        intent.putExtra("meting", (Serializable) meting);
+        intent.putExtra("meting", meting);
 
         startActivityForResult(intent, 1);
 

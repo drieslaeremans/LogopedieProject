@@ -138,7 +138,7 @@ public class DetailsKindActivity extends AppCompatActivity {
         intent.putExtra("woord", testwoord);
 
 
-        startActivity(intent);
+        startActivityForResult(intent, 2);
     }
 
 
@@ -154,6 +154,14 @@ public class DetailsKindActivity extends AppCompatActivity {
                 button.setEnabled(false);
 
                 button = (Button) findViewById(R.id.buttonOefeningen);
+                button.setEnabled(true);
+            }
+        } else if(requestCode == 2) {
+            if (resultCode == RESULT_OK) {
+                Button button = (Button) findViewById(R.id.buttonOefeningen);
+                button.setEnabled(false);
+
+                button = (Button) findViewById(R.id.buttonNameting);
                 button.setEnabled(true);
             }
         }
