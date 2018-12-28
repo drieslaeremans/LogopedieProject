@@ -35,9 +35,7 @@ public class Oefening1Activity extends AppCompatActivity {
 
         SoundManager soundManager = new SoundManager(this);
 
-        soundManager.Play("woord_" + woord.getWoord());
-
-
+        soundManager.Play("woord_" + woord.getWoord().toLowerCase());
     }
 
     private void leesWoord()

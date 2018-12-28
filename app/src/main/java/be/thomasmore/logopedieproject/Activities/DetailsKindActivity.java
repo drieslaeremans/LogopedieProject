@@ -130,6 +130,22 @@ public class DetailsKindActivity extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void onButtonClickStartOefeningen(View v) {
+        Intent intent = new Intent(this, OefeningPreteaching.class);
+        intent.putExtra("kind", this.kind);
+
+        Woord testwoord = db.getOefenwoord(); // tijdelijk random woord
+        intent.putExtra("woord", testwoord);
+
+
+        startActivity(intent);
+    }
+
+
+    public void onButtonClickStartNameting(View v) {
+
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if(requestCode == 1) {
@@ -141,22 +157,5 @@ public class DetailsKindActivity extends AppCompatActivity {
                 button.setEnabled(true);
             }
         }
-    }
-
-    public void onButtonClickStartOefeningen(View v) {
-        Intent intent = new Intent(this, Oefening1Activity.class);
-        intent.putExtra("kind", this.kind);
-
-        Woord testwoord = db.getWoorden().get(3); // tijdelijk random woord
-
-        intent.putExtra("woord", testwoord);
-
-
-        startActivity(intent);
-    }
-
-
-    public void onButtonClickStartNameting(View v) {
-
     }
 }

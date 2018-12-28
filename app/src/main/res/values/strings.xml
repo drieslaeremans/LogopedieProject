@@ -42,6 +42,7 @@
     <string name="overzichtkinderen_dialog_kindbewerken_positive">Bewerken</string>
     <string name="overzichtkinderen_dialog_kindbewerken_negative">Annuleren</string>
     <string name="title_activity_oefening5">Oefening5Activity</string>
+    <string name="title_activity_oefening_preteaching">OefeningPreteaching</string>
 
 
 </resources>
