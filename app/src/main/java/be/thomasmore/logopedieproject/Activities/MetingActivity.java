@@ -42,13 +42,12 @@ public class MetingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         db = new DatabaseHelper(this);
+        soundManager = new SoundManager(this);
+        meting = new Meting(0);
+
         Intent intent = getIntent();
         long id = intent.getLongExtra("id", 0);
 
-        meting = new Meting(0, intent.getStringExtra("typeMeting"), id);
-
-
-        soundManager = new SoundManager(this);
         haalWoordenOp();
         leesKind(id);
 
@@ -141,14 +140,19 @@ public class MetingActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        finish();
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if(requestCode == 1) {
-            if(resultCode == RESULT_CANCELED) {
-
-            } else if (resultCode == RESULT_OK) {
-                Intent _intent = new Intent();
-
-                setResult(RESULT_OK, _intent);
+            if (resultCode == RESULT_OK) {
+                setResult(RESULT_OK, intent);
+                finish();
+            } else {
+                setResult(RESULT_CANCELED);
                 finish();
             }
         }

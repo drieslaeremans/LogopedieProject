@@ -75,7 +75,6 @@ public class Oefening2Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         soundManager.ResetQueue();
-
         setResult(RESULT_CANCELED);
         finish();
     }

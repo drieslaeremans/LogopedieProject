@@ -121,7 +121,7 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
 
         for(int i = 0; i < antwoorden.size(); i++)
         {
-            if(antwoorden.get(i) == fouteWoord)
+            if(antwoorden.get(i).equals(fouteWoord))
                 correct =false;
         }
 

@@ -4,16 +4,12 @@ import java.io.Serializable;
 
 public class Meting implements Serializable {
     private long id;
-    private String type;
-    private long kindId;
 
     public Meting() {
     }
 
-    public Meting(long id, String type, long kindId) {
+    public Meting(long id) {
         this.id = id;
-        this.type = type;
-        this.kindId = kindId;
     }
 
     public long getId() {
@@ -22,21 +18,5 @@ public class Meting implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public long getKindId() {
-        return kindId;
-    }
-
-    public void setKindId(long kindId) {
-        this.kindId = kindId;
     }
 }

@@ -13,8 +13,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.Serializable;
+import java.util.List;
+
 import be.thomasmore.logopedieproject.Classes.Kind;
+import be.thomasmore.logopedieproject.Classes.Meting;
+import be.thomasmore.logopedieproject.Classes.Oefening;
+import be.thomasmore.logopedieproject.Classes.Sessie;
 import be.thomasmore.logopedieproject.Classes.Woord;
+import be.thomasmore.logopedieproject.Classes.WoordInMeting;
 import be.thomasmore.logopedieproject.Helpers.DatabaseHelper;
 import be.thomasmore.logopedieproject.R;
 
@@ -22,6 +29,13 @@ public class DetailsKindActivity extends AppCompatActivity {
 
     private Kind kind;
     private DatabaseHelper db;
+
+    Sessie sessie;
+    Meting voormeting;
+    List<WoordInMeting> voormetingWoorden;
+    Meting nameting;
+    List<WoordInMeting> nametingWoorden;
+    Oefening oefening;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +53,10 @@ public class DetailsKindActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         long id = intent.getLongExtra("id", 0);
+
+        sessie = new Sessie();
+        sessie.setKindId(id);
+        sessie.setDatum(""); // Huidige datum automatisch in setter toegepast
 
         if(id > 0)
             leesKind(id);
@@ -125,7 +143,6 @@ public class DetailsKindActivity extends AppCompatActivity {
     public void onButtonClickStartVoormeting(View v) {
         Intent intent = new Intent(this, MetingActivity.class);
         intent.putExtra("id", this.kind.getId());
-        intent.putExtra("typeMeting", "voormeting");
 
         startActivityForResult(intent, 1);
     }
@@ -134,7 +151,7 @@ public class DetailsKindActivity extends AppCompatActivity {
         Intent intent = new Intent(this, OefeningPreteaching.class);
         intent.putExtra("kind", this.kind);
 
-        Woord testwoord = db.getOefenwoord(); // tijdelijk random woord
+        Woord testwoord = db.getOefenwoord();
         intent.putExtra("woord", testwoord);
 
 
@@ -143,13 +160,29 @@ public class DetailsKindActivity extends AppCompatActivity {
 
 
     public void onButtonClickStartNameting(View v) {
+        Intent intent = new Intent(this, MetingActivity.class);
+        intent.putExtra("id", this.kind.getId());
 
+        startActivityForResult(intent, 3);
+    }
+
+    public void onButtonClickSessieOpslagen(View v) {
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        finish();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if(requestCode == 1) {
             if (resultCode == RESULT_OK) {
+                voormeting = (Meting) intent.getSerializableExtra("meting");
+                voormetingWoorden = (List<WoordInMeting>) intent.getSerializableExtra("list");
+
                 Button button = (Button) findViewById(R.id.buttonVoormeting);
                 button.setEnabled(false);
 
@@ -158,11 +191,24 @@ public class DetailsKindActivity extends AppCompatActivity {
             }
         } else if(requestCode == 2) {
             if (resultCode == RESULT_OK) {
+                //Todo: Oefeningen afmaken en bij elke oef oefening-object resultaat bijhouden.
+                //Todo: Na-oefening activity maken die resultaat van oefening toont?
+                //Todo: Vanuit Na-oefening activity het oefening-object meegeven als intent (analoog aan Nameting->meting->this)
+                oefening = (Oefening) intent.getSerializableExtra("oefening");
+
                 Button button = (Button) findViewById(R.id.buttonOefeningen);
                 button.setEnabled(false);
 
                 button = (Button) findViewById(R.id.buttonNameting);
                 button.setEnabled(true);
+            }
+        } else if(requestCode == 3) {
+            if (resultCode == RESULT_OK) {
+                nameting = (Meting) intent.getSerializableExtra("meting");
+                nametingWoorden = (List<WoordInMeting>) intent.getSerializableExtra("list");
+
+                Button button = (Button) findViewById(R.id.buttonNameting);
+                button.setEnabled(false);
             }
         }
     }

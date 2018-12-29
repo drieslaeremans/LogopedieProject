@@ -184,7 +184,6 @@ public class Oefening3Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         soundManager.ResetQueue();
-        soundManager.stopPlaying();
         setResult(RESULT_CANCELED);
         finish();
     }

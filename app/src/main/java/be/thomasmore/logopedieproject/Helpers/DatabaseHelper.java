@@ -11,18 +11,18 @@ import java.util.List;
 
 import be.thomasmore.logopedieproject.Classes.Kind;
 import be.thomasmore.logopedieproject.Classes.Meting;
+import be.thomasmore.logopedieproject.Classes.Oefening;
+import be.thomasmore.logopedieproject.Classes.Sessie;
 import be.thomasmore.logopedieproject.Classes.Woord;
 import be.thomasmore.logopedieproject.Classes.WoordInMeting;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static int DATABASE_VERSION = 7;
+    private static int DATABASE_VERSION = 8;
 
     private static final String DATABASE_NAME = "logopedie";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
-
     }
 
     @Override
@@ -64,6 +64,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY (metingId) REFERENCES meting(id)," +
                 "FOREIGN KEY (woordId) REFERENCES woord(id) )";
         db.execSQL(CREATE_TABLE_WOORDINMETING);
+
+        String CREATE_TABLE_OEFENING = "CREATE TABLE oefening (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "oefening1 BOOLEAN, " +
+                "oefening2 BOOLEAN, " +
+                "oefening3 BOOLEAN, " +
+                "oefening4 BOOLEAN, " +
+                "oefening5 BOOLEAN, " +
+                "oefening6 BOOLEAN, " +
+                "oefenwoordId INTEGER, " +
+                "FOREIGN KEY (oefenwoordId) REFERENCES woord(id) )";
+        db.execSQL(CREATE_TABLE_OEFENING);
+
+        String CREATE_TABLE_SESSIE = "CREATE TABLE sessie (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "datum TEXT, " +
+                "kindId INTEGER, " +
+                "voormetingId INTEGER, " +
+                "nametingId INTEGER, " +
+                "oefeningId INTEGER," +
+                "FOREIGN KEY (kindId) REFERENCES kind(id)," +
+                "FOREIGN KEY (voormetingId) REFERENCES meting(id)," +
+                "FOREIGN KEY (nametingId) REFERENCES meting(id)," +
+                "FOREIGN KEY (oefeningId) REFERENCES oefening(id) )";
+        db.execSQL(CREATE_TABLE_SESSIE);
 
 
         insertKinderen(db);
@@ -323,12 +348,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return woord;
     }
 
+    public long sessieOpslagen(Sessie sessie, Meting voormeting, List<WoordInMeting> voormetingWoorden, Meting nameting,  List<WoordInMeting> nametingWoorden, Oefening oefening) {
+        //Voormeting opslagen
+        sessie.setVoormetingId(this.createMeting(voormeting));
+        for (WoordInMeting gemetenWoord : voormetingWoorden) {
+            gemetenWoord.setMetingId(sessie.getVoormetingId());
+        }
+        this.createWoordenInMeting(voormetingWoorden);
+
+        //Nameting opslagen
+        sessie.setNametingId(this.createMeting(nameting));
+        for (WoordInMeting gemetenWoord : nametingWoorden) {
+            gemetenWoord.setMetingId(sessie.getNametingId());
+        }
+        this.createWoordenInMeting(nametingWoorden);
+
+        //Oefening opslagen
+        sessie.setOefeningId(this.createOefening(oefening));
+
+        //Sessie opslagen
+        return this.createSessie(sessie);
+    }
+
     public long createMeting(Meting meting) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("type", meting.getType());
-        values.put("kindId", meting.getKindId());
 
         long id = db.insert("meting", null, values);
 
@@ -349,5 +394,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         db.close();
+    }
+
+    private long createOefening(Oefening oefening) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("oefening1", oefening.isOefening1());
+        values.put("oefening2", oefening.isOefening2());
+        values.put("oefening3", oefening.isOefening3());
+        values.put("oefening4", oefening.isOefening4());
+        values.put("oefening5", oefening.isOefening5());
+        values.put("oefening6", oefening.isOefening6());
+
+        long id = db.insert("oefening", null, values);
+        db.close();
+
+        return id;
+    }
+
+    private long createSessie(Sessie sessie) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("datum", sessie.getDatum());
+        values.put("kindId", sessie.getKindId());
+        values.put("voormetingId", sessie.getVoormetingId());
+        values.put("nametingId", sessie.getNametingId());
+        values.put("oefeningId", sessie.getOefeningId());
+
+        long id = db.insert("sessie", null, values);
+        db.close();
+
+        return id;
     }
 }

@@ -18,7 +18,7 @@
     <string name="detailskindactivity_nameting">Nameting starten</string>
 
     <!-- Activity: NaMeting -->
-    <string name="nametingactivity_opslaan">Opslaan en Sluiten</string>
+    <string name="nametingactivity_einde">Meting afronden</string>
 
     <!-- Dialoog: afsluiten -->
     <string name="mainactivity_button_afsluiten">Afsluiten</string>

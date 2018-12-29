@@ -50,28 +50,18 @@ public class NaMetingActivity extends AppCompatActivity {
         listViewWoorden.setAdapter(adapterWoordInMeting);
     }
 
-    public void buttonClickMetingOpslaan(View v) {
-        long metingId = db.createMeting(meting);
-
-        for (WoordInMeting gemetenWoord : gemetenWoorden) {
-            gemetenWoord.setMetingId(metingId);
-        }
-        db.createWoordenInMeting(gemetenWoorden);
-
-        activitySluitenNaOpslaan();
-    }
-
-    private void activitySluitenNaOpslaan() {
+    public void buttonClickMetingEinde(View v) {
         Intent intent = new Intent();
+        intent.putExtra("meting", meting);
+        intent.putExtra("list", (Serializable) gemetenWoorden);
 
         setResult(RESULT_OK, intent);
         finish();
     }
 
-    public void activitySluitenNietOpslaan() {
-        Intent intent = new Intent();
-
-        setResult(RESULT_CANCELED, intent);
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
         finish();
     }
 
