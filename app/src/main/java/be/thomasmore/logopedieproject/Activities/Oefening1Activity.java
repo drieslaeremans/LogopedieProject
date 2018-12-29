@@ -38,8 +38,10 @@ public class Oefening1Activity extends AppCompatActivity {
         leesWoord();
 
         soundManager = new SoundManager(this);
+        spreek("woord_" + woord.getWoord().toLowerCase());
+        spreek("definitie_" + woord.getWoord().toLowerCase());
 
-        soundManager.Play("woord_" + woord.getWoord().toLowerCase());
+        soundManager.PlayQueue();
     }
 
     private void leesWoord()
@@ -49,14 +51,25 @@ public class Oefening1Activity extends AppCompatActivity {
         doelwoord.setText( woord.getWoord() );
 
         ImageView image = (ImageView) findViewById(R.id.afbeelding);
-
         image.setImageResource(
                 getResources().getIdentifier("woord_" + woord.getWoord().toLowerCase(), "drawable", getPackageName())
         );
+        image.setContentDescription(woord.getLidwoord() + " " + woord.getWoord());
     }
 
-    public void volgendeOefening(View v)
-    {
+    public void onClickDefinitieSpreken(View v) {
+        soundManager.ResetQueue();
+        spreek("definitie_" + woord.getWoord().toLowerCase());
+        soundManager.PlayQueue();
+    }
+
+    private void spreek(String bestand) {
+        soundManager.AddQueue(bestand);
+    }
+
+    public void volgendeOefening(View v) {
+        soundManager.ResetQueue();
+
         Intent intent = new Intent(this, Oefening2Activity.class);
         intent.putExtra("woord", woord);
         intent.putExtra("kind", kind);
@@ -64,19 +77,19 @@ public class Oefening1Activity extends AppCompatActivity {
         intent.putExtra("oefening", oefening);
 
         startActivityForResult(intent, 1);
-//        startActivity(intent);
+
     }
 
     @Override
     public void onBackPressed() {
         soundManager.ResetQueue();
-        soundManager.stopPlaying();
         setResult(RESULT_CANCELED);
         finish();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        soundManager.ResetQueue();
         if (requestCode == 1) {
             if (resultCode == RESULT_CANCELED) {
                 setResult(RESULT_CANCELED);

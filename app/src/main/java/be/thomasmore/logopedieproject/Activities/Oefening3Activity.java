@@ -116,6 +116,9 @@ public class Oefening3Activity extends AppCompatActivity {
 
     public void volgendeOefening()
     {
+        soundManager.ResetQueue();
+        soundManager.stopPlaying();
+
         Intent intent = new Intent(this, Oefening4Activity.class);
         intent.putExtra("woord", woord );
         intent.putExtra("kind", kind);

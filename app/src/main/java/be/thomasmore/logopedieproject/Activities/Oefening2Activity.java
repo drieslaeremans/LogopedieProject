@@ -36,8 +36,7 @@ public class Oefening2Activity extends AppCompatActivity {
 
         leesWoord();
 
-        SoundManager soundManager = new SoundManager(this);
-
+        soundManager = new SoundManager(this);
         soundManager.Play( "woord_" + woord.getWoord());
     }
 
@@ -54,21 +53,29 @@ public class Oefening2Activity extends AppCompatActivity {
         );
     }
 
+    public void onClickWoordSprekenOef2(View v) {
+        if (!soundManager.isPlaying()) {
+            soundManager.Play("woord_" + woord.getWoord().toLowerCase());
+        }
+    }
+
     public void volgendeOefening(View v)
     {
-        Intent intent = new Intent(this, Oefening3Activity.class);
-        intent.putExtra("woord", woord );
-        intent.putExtra("kind", kind);
-        oefening.setOefening2(true);
-        intent.putExtra("oefening", oefening);
+        if(!soundManager.isPlaying()) {
+            Intent intent = new Intent(this, Oefening3Activity.class);
+            intent.putExtra("woord", woord );
+            intent.putExtra("kind", kind);
+            oefening.setOefening2(true);
+            intent.putExtra("oefening", oefening);
 
-        startActivityForResult(intent, 1);
+            startActivityForResult(intent, 1);
+        }
     }
 
     @Override
     public void onBackPressed() {
         soundManager.ResetQueue();
-        soundManager.stopPlaying();
+
         setResult(RESULT_CANCELED);
         finish();
     }

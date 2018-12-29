@@ -14,22 +14,43 @@
         android:gravity="center_horizontal"
         >
 
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:id="@+id/woord"
             android:textSize="30sp"
-            android:text="Doelwoord"/>
+            android:text="@string/oefeningen_doelwoord"/>
+
+        <ImageButton
+            android:id="@+id/speakerOefening1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/speaker"
+            android:contentDescription="@string/oefeningen_speakerContentDescription"
+            android:maxWidth="35dp"
+            android:maxHeight="35dp"
+            android:onClick="onClickWoordSprekenOef2"
+            android:tag="2" />
+    </LinearLayout>
 
 
         <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/afbeelding"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
             android:background="#00000000"
             android:onClick="volgendeOefening"
-            android:layout_marginTop="50dp"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:scaleType="center"
-            android:id="@+id/afbeelding"/>
+            android:scaleType="center" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

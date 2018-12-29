@@ -133,6 +133,8 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
 
     private void onCorrecteAntwoorden()
     {
+        soundManager.ResetQueue();
+
         Intent intent = new Intent(this, Oefening5Activity.class);
 
         intent.putExtra("kind", kind);
@@ -173,7 +175,6 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
     @Override
     public void onBackPressed() {
         soundManager.ResetQueue();
-        soundManager.stopPlaying();
         setResult(RESULT_CANCELED);
         finish();
     }

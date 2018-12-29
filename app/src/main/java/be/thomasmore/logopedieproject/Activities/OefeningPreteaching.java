@@ -42,13 +42,13 @@ public class OefeningPreteaching extends AppCompatActivity {
     }
 
     /*
-        Tekst nog voorzien voor preteachingplaat
-        "Hallo ik ben Kaat. Ik ga vandaag samen met mijn vriendjes naar het bos,
+        Todo: Tekst nog voorzien voor preteachingplaat
+        Todo: "Hallo ik ben Kaat. Ik ga vandaag samen met mijn vriendjes naar het bos,...
         op groot avontuur. Maar ik zoek nog een iemand die graag met mij mee
         wilt gaan. Samen gaan we op zoek naar heel veel nieuwe dingen.
         Wil jij graag met ons mee gaan? …. Ja? …  Super leuk! Klik maar op de
         bomen als je wilt starten.
-        "Hier gaan we"
+        Todo: "Hier gaan we"
      */
 
     private void setPreteaching() {

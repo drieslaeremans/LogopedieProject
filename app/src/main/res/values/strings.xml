@@ -44,5 +44,10 @@
     <string name="title_activity_oefening5">Oefening5Activity</string>
     <string name="title_activity_oefening_preteaching">OefeningPreteaching</string>
 
+    <!--Oefeningen-->
+    <string name="oefeningen_doelwoord">Doelwoord</string>
+    <string name="oefeningen_speakerContentDescription">Speaker</string>
+    <string name="oefeningen_afbeeldingContentDescription">Afbeelding</string>
+
 
 </resources>

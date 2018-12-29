@@ -9,28 +9,49 @@
     tools:showIn="@layout/activity_oefening1">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center_horizontal"
-        >
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:id="@+id/woord"
-            android:textSize="30sp"
-            android:text="Doelwoord"/>
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/woord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/oefeningen_doelwoord"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
+            <ImageButton
+                android:id="@+id/speakerOefening1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/speaker"
+                android:contentDescription="@string/oefeningen_speakerContentDescription"
+                android:maxWidth="35dp"
+                android:maxHeight="35dp"
+                android:onClick="onClickDefinitieSpreken"
+                android:tag="2" />
+        </LinearLayout>
 
         <ImageButton
-            android:background="#00000000"
-            android:onClick="volgendeOefening"
+            android:id="@+id/afbeelding"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="50dp"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:scaleType="center"
-            android:id="@+id/afbeelding"/>
+            android:background="#00000000"
+            android:contentDescription="@string/oefeningen_afbeeldingContentDescription"
+            android:onClick="volgendeOefening"
+            android:scaleType="center" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

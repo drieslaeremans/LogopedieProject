@@ -97,7 +97,7 @@ public class Oefening implements Serializable {
     public String getResult() {
         boolean[] results = {isOefening1(), isOefening2(), isOefening3(), isOefening4(), isOefening5(), isOefening6()};
 
-        return ("" + getResult(results) + "/" + results.length);
+        return ("" + getScore(results) + "/" + results.length);
     }
 
     public String toStringOefenwoord(Context context) {
@@ -105,7 +105,7 @@ public class Oefening implements Serializable {
         return db.getWoord(getOefenwoordId()).getWoord();
     }
 
-    private int getResult(boolean... results) {
+    private int getScore(boolean... results) {
         int count = 0;
         for (boolean result: results) {
             count += (result ? 1 : 0);
