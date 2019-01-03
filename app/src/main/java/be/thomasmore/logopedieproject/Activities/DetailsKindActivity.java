@@ -9,13 +9,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
+import be.thomasmore.logopedieproject.Classes.Conditie;
 import be.thomasmore.logopedieproject.Classes.Kind;
 import be.thomasmore.logopedieproject.Classes.Meting;
 import be.thomasmore.logopedieproject.Classes.Oefening;
@@ -44,15 +53,20 @@ public class DetailsKindActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Button button = (Button) findViewById(R.id.buttonOefeningen);
-       // button.setEnabled(false);
-        // effe afgezet, anders kan ik ni testen :D
+        button.setEnabled(false);
+
         button = (Button) findViewById(R.id.buttonNameting);
         button.setEnabled(false);
+
+
 
         db = new DatabaseHelper(this);
 
         Intent intent = getIntent();
         long id = intent.getLongExtra("id", 0);
+
+
+
 
         sessie = new Sessie();
         sessie.setKindId(id);
@@ -91,9 +105,6 @@ public class DetailsKindActivity extends AppCompatActivity {
 
         editVoornaam.setText(kind.getVoornaam());
         editAchternaam.setText(kind.getAchternaam());
-
-
-
 
         builder.setMessage(R.string.overzichtkinderen_dialog_kindbewerken_message)
                 .setTitle("Kind bewerken")
@@ -147,15 +158,120 @@ public class DetailsKindActivity extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+
+    private void bepaalConditie(View viewInflater)
+    {
+        final Spinner spinnerWoord = viewInflater.findViewById(R.id.woord);
+        final Spinner spinnerGroep = viewInflater.findViewById(R.id.groep);
+
+        final TextView training = viewInflater.findViewById(R.id.training);
+
+        String woord = (String) spinnerWoord.getSelectedItem();
+        int groep = Integer.parseInt (((String) spinnerGroep.getSelectedItem()).replace("Groep ", ""));
+
+        Woord w = db.getWoordByNaam(woord);
+        Conditie c = Conditie.ONGELDIGE_CONDITIE;
+        if(w != null)
+            c = Woord.bepaalConditie(groep, w);
+
+
+        switch(c)
+        {
+            case TRAINEN_NIET_FONOLOGISCH_VERKENNEN:
+                training.setText("Niet-fonologisch verkennen");
+                break;
+            case TRAINEN_FONOLOGISCH_VERKENNEN_ZOEMEND:
+                training.setText("Fonologisch verkennen, zoemend");
+                break;
+            case TRAINEN_FONOLOGISCH_VERKENNEN_KLANKGROEPEN:
+                training.setText("Fonologisch verkennen, klankgroepen");
+                break;
+            case ONGELDIGE_CONDITIE:
+                training.setText("Niet van toepassing");
+                break;
+        }
+    }
+
     public void onButtonClickStartOefeningen(View v) {
-        Intent intent = new Intent(this, OefeningPreteaching.class);
-        intent.putExtra("kind", this.kind);
+        System.out.println("Start oefeningen");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
 
-        Woord testwoord = db.getOefenwoord();
-        intent.putExtra("woord", testwoord);
+        final View viewInflater = inflater.inflate(R.layout.dialog_detailskind_oefeningen, null);
+
+        final Spinner spinnerWoord = viewInflater.findViewById(R.id.woord);
+        final Spinner spinnerGroep = viewInflater.findViewById(R.id.groep);
+
+        final Intent intentPreteachPlaat = new Intent(this,  OefeningPreteaching.class);
+
+        List<Woord> woorden = db.getDoelwoorden();
+        String[] woordenArray = new String[woorden.size()];
+
+        for(int i =0; i < woorden.size(); i++)
+        {
+            woordenArray[i] = woorden.get(i).getWoord();
+        }
 
 
-        startActivityForResult(intent, 2);
+        String[] groepenArray = { "Groep 1", "Groep 2", "Groep 3"};
+
+        final ArrayAdapter<String> spinnerWoordAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,  woordenArray);
+        spinnerWoordAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerWoord.setAdapter(spinnerWoordAdapter);
+
+
+        final ArrayAdapter<String> spinnerGroepAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,  groepenArray);
+        spinnerGroepAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerGroep.setAdapter(spinnerGroepAdapter);
+
+
+        spinnerWoord.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,  int arg2, long arg3) {
+                bepaalConditie(viewInflater);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+
+        spinnerGroep.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,  int arg2, long arg3) {
+                bepaalConditie(viewInflater);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+
+        builder.setMessage(R.string.oefeningen_dialog_woordengroep_message)
+                .setTitle("Oefeningen")
+                .setView(viewInflater)
+                .setPositiveButton(R.string.oefeningen_dialog_woordengroep_positive, null)
+                .setNegativeButton(R.string.oefeningen_dialog_woordengroep_negative, null);
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Woord woord =  db.getWoordByNaam((String) spinnerWoord.getSelectedItem());
+                int groep = Integer.parseInt (((String) spinnerGroep.getSelectedItem()).replace("Groep ", ""));
+
+
+                if(woord != null)
+                {
+                    intentPreteachPlaat.putExtra("kind", kind);
+                    intentPreteachPlaat.putExtra("woord", woord);
+                    intentPreteachPlaat.putExtra("groep", groep);
+                    startActivityForResult(intentPreteachPlaat, 2);
+                }
+            }
+        });
+
     }
 
 
@@ -166,8 +282,21 @@ public class DetailsKindActivity extends AppCompatActivity {
         startActivityForResult(intent, 3);
     }
 
-    public void onButtonClickSessieOpslagen(View v) {
+    public void onButtonClickSessieOpslagen(View v)
+    {
+        if(this.oefening == null)
+        {
+            System.out.println("Oefening is null");
+            return;
+        }
+        System.out.println("Oefening: "+oefening);
 
+        long id = db.sessieOpslagen(sessie, voormeting, voormetingWoorden, nameting, nametingWoorden, oefening );
+
+        Intent intent = new Intent(this, SessieOverzichtActivity.class);
+        intent.putExtra("sessieId", id);
+
+        startActivity(intent);
     }
 
     @Override
@@ -178,6 +307,8 @@ public class DetailsKindActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        System.out.println("REQUESTCODE: " + requestCode);
+
         if(requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 voormeting = (Meting) intent.getSerializableExtra("meting");
@@ -201,14 +332,22 @@ public class DetailsKindActivity extends AppCompatActivity {
 
                 button = (Button) findViewById(R.id.buttonNameting);
                 button.setEnabled(true);
+
+                button = (Button) findViewById(R.id.buttonResultaat);
+                button.setEnabled(false);
             }
         } else if(requestCode == 3) {
             if (resultCode == RESULT_OK) {
                 nameting = (Meting) intent.getSerializableExtra("meting");
                 nametingWoorden = (List<WoordInMeting>) intent.getSerializableExtra("list");
 
+
+
                 Button button = (Button) findViewById(R.id.buttonNameting);
                 button.setEnabled(false);
+
+                button = (Button) findViewById(R.id.buttonResultaat);
+                button.setEnabled(true);
             }
         }
     }

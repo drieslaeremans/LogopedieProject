@@ -3,13 +3,8 @@ package be.thomasmore.logopedieproject.Activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.media.Image;
-import android.opengl.Visibility;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -21,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import be.thomasmore.logopedieproject.Classes.Kind;
 import be.thomasmore.logopedieproject.Classes.Oefening;
@@ -84,6 +77,7 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
 
             String woord = "oef4_" + (semantischeWoorden.get(i)).replace(" ", "_").toLowerCase();
 
+            System.out.println("Woord: " + woord);
             image.setTag(semantischeWoorden.get(i).toLowerCase());
 
             image.setOnClickListener(this);
@@ -109,7 +103,9 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
         String woord = (String) button.getTag();
 
         System.out.println("Oefening4: geselecteerd: " + woord);
-        antwoorden.add(woord);
+
+        if(antwoorden.indexOf(woord) < 0)
+            antwoorden.add(woord);
 
         if(antwoorden.size() == 3)
             checkAntwoorden();
@@ -126,14 +122,14 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
         }
 
         if(correct)
-            onCorrecteAntwoorden();
+            onJuisteAntwoorden();
         else
             onFouteAntwoorden();
     }
 
-    private void onCorrecteAntwoorden()
+    private void onJuisteAntwoorden()
     {
-        soundManager.ResetQueue();
+        soundManager.resetQueue();
 
         Intent intent = new Intent(this, Oefening5Activity.class);
 
@@ -150,9 +146,9 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
         final ImageButton image = (ImageButton) findViewById(R.id.afbeelding);
         image.setImageResource( getResources().getIdentifier("smiley_sad", "drawable", getPackageName()));
 
-        soundManager.ResetQueue();
-        soundManager.AddQueue( "zin_oepsdatwasnietjuist");
-        soundManager.PlayQueue();
+        soundManager.resetQueue();
+        soundManager.addQueue( "zin_oepsdatwasnietjuist");
+        soundManager.playQueue();
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -174,7 +170,7 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
 
     @Override
     public void onBackPressed() {
-        soundManager.ResetQueue();
+        soundManager.resetQueue();
         setResult(RESULT_CANCELED);
         finish();
     }

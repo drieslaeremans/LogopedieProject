@@ -1,0 +1,9 @@
+package be.thomasmore.logopedieproject.Classes;
+
+public enum Conditie
+{
+    TRAINEN_NIET_FONOLOGISCH_VERKENNEN, // 6.1
+    TRAINEN_FONOLOGISCH_VERKENNEN_ZOEMEND, // 6.2
+    TRAINEN_FONOLOGISCH_VERKENNEN_KLANKGROEPEN, // 6.3
+    ONGELDIGE_CONDITIE
+}

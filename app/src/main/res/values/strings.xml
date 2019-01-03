@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
     <string name="app_name">LogopedieProject</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_homepage">Overzicht kinderen</string>
@@ -6,16 +6,22 @@
     <string name="mainactivity_button_instellingen">Instellingen</string>
     <string name="title_activity_meting">Meting</string>
     <string name="title_activity_na_meting">Nameting: samenvatting</string>
+    <string name="title_activity_oefening_preteaching">Preteaching-plaat</string>
     <string name="title_activity_oefening1">Oefening 1</string>
     <string name="title_activity_oefening2">Oefening 2</string>
     <string name="title_activity_oefening3">Oefening 3</string>
     <string name="title_activity_oefening4">Oefening 4</string>
-
+    <string name="title_activity_oefening5">Oefening 5</string>
+    <string name="title_activity_oefening61">Oefening 6: niet-fonologisch</string>
+    <string name="title_activity_oefening62">Oefening 6: zoemend</string>
+    <string name="title_activity_oefening63">Oefening 6: klankgroepen</string>
+    <string name="title_activity_details_kind">Details Kind</string>
 
     <!-- Activity: DetailsKind -->
     <string name="detailskindactivity_voormeting">Voormeting starten</string>
     <string name="detailskindactivity_oefeningen">Oefeningen starten</string>
     <string name="detailskindactivity_nameting">Nameting starten</string>
+    <string name="detailskindactivity_resultaat">Resultaten opslaan</string>
 
     <!-- Activity: NaMeting -->
     <string name="nametingactivity_einde">Meting afronden</string>
@@ -33,7 +39,6 @@
     <string name="overzichtkinderen_dialog_kindtoevoegen_input_achternaam">Achternaam</string>
     <string name="overzichtkinderen_dialog_kindtoevoegen_positive">Toevoegen</string>
     <string name="overzichtkinderen_dialog_kindtoevoegen_negative">Annuleren</string>
-    <string name="title_activity_details_kind">DetailsKindActivity</string>
 
     <!-- Dialoog: kind updaten -->
     <string name="overzichtkinderen_dialog_kindbewerken_message">Vul onderstaande gegevens in:</string>
@@ -41,13 +46,21 @@
     <string name="overzichtkinderen_dialog_kindbewerken_input_achternaam">Achternaam</string>
     <string name="overzichtkinderen_dialog_kindbewerken_positive">Bewerken</string>
     <string name="overzichtkinderen_dialog_kindbewerken_negative">Annuleren</string>
-    <string name="title_activity_oefening5">Oefening5Activity</string>
-    <string name="title_activity_oefening_preteaching">OefeningPreteaching</string>
+
+
+    <!-- Dialoog: woord en groep kiezen -->
+    <string name="oefeningen_dialog_woordengroep_message">Selecteer een woord en groep</string>
+    <string name="oefeningen_dialog_woordengroep_positive">Oefenen</string>
+    <string name="oefeningen_dialog_woordengroep_negative">Annuleren</string>
 
     <!--Oefeningen-->
     <string name="oefeningen_doelwoord">Doelwoord</string>
     <string name="oefeningen_speakerContentDescription">Speaker</string>
     <string name="oefeningen_afbeeldingContentDescription">Afbeelding</string>
+    <string name="title_activity_oefening_resultaat">Oefeningen: resultaat</string>
 
+
+    <string name="oefeningen_afsluiten">Terug naar overzicht</string>
+    <string name="title_activity_sessie_overzicht">Sessie: overzicht</string>
 
 </resources>

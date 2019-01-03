@@ -36,14 +36,14 @@ public  class SoundManager implements MediaPlayer.OnCompletionListener {
 
 
 
-    public void ResetQueue()
+    public void resetQueue()
     {
 
         index = 0;
         resourceIds.clear();
 
     }
-    public void AddQueue(String filename)
+    public void addQueue(String filename)
     {
         System.out.println("SoundManager: Adding to queue: " + filename);
         filename = filename.toLowerCase();
@@ -57,7 +57,7 @@ public  class SoundManager implements MediaPlayer.OnCompletionListener {
         }
     }
 
-    public void PlayQueue()
+    public void playQueue()
     {
         System.out.println("SoundManager: Playing queue: " + resourceIds.get(index) + " (" + (index +1) + "/" + resourceIds.size() +  ")");
 

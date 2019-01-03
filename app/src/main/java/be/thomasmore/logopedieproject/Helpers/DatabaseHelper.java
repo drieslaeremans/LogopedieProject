@@ -17,7 +17,7 @@ import be.thomasmore.logopedieproject.Classes.Woord;
 import be.thomasmore.logopedieproject.Classes.WoordInMeting;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static int DATABASE_VERSION = 8;
+    private static int DATABASE_VERSION = 10;
 
     private static final String DATABASE_NAME = "logopedie";
 
@@ -74,6 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "oefening5 BOOLEAN, " +
                 "oefening6 BOOLEAN, " +
                 "oefenwoordId INTEGER, " +
+                "groep INTEGER, " +
                 "FOREIGN KEY (oefenwoordId) REFERENCES woord(id) )";
         db.execSQL(CREATE_TABLE_OEFENING);
 
@@ -101,7 +102,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS kind");
         db.execSQL("DROP TABLE IF EXISTS meting");
         db.execSQL("DROP TABLE IF EXISTS woordInMeting");
-
+        db.execSQL("DROP TABLE IF EXISTS oefening");
+        db.execSQL("DROP TABLE IF EXISTS sessie");
         onCreate(db);
     }
 
@@ -155,7 +157,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "'Een zwaan is een grote vogel met een lange, kromme hals. Meestal zijn zwanen wit, maar soms zwart. ', " +
                 "'In de vijver in het park zwemt een witte zwaan.', " +
                 "'De zwaan fietst in het park. ', " +
-                "'Zwaan', 'De vijver, vleugels, wit, het boek', 2, 3, 1, 0 );");
+                "'Zwaan', 'De vijver,vleugels,wit,het boek', 2, 3, 1, 0 );");
         db.execSQL("INSERT INTO woord (id, lidwoord, woord, definitie, juisteContext, fouteContext, lettergrepen, semantischWeb, conditie1, conditie2, conditie3, oefenwoord)" +
                 "VALUES (9, 'Het', 'Kamp', " +
                 "'Een kamp is een plaats om buiten te wonen en te slapen, bijvoorbeeld in tenten. ', " +
@@ -173,6 +175,74 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private void insertKinderen(SQLiteDatabase db) {
         db.execSQL("INSERT INTO kind(voornaam, achternaam) VALUES ('Tom', 'Vdr')");
         db.execSQL("INSERT INTO kind(voornaam, achternaam) VALUES ('Dries', 'L')");
+    }
+
+    public Woord getWoordByNaam(String woord)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.query(
+                "woord",
+                new String[] {
+                        "id", "lidwoord", "woord",
+                        "definitie", "juisteContext", "fouteContext",
+                        "lettergrepen", "semantischWeb",
+                        "conditie1", "conditie2", "conditie3",
+                        "oefenwoord"
+                },
+                "woord = ?",
+                new String[] { String.valueOf(woord) }
+                , null, null, null);
+
+
+        Woord w = new Woord();
+        if (c.moveToFirst()) {
+            w = new Woord(
+                    c.getLong(0),
+                    c.getString(1),
+                    c.getString(2),
+                    c.getString(3),
+                    c.getString(4),
+                    c.getString(5),
+                    c.getString(6),
+                    c.getString(7),
+                    c.getInt(8),
+                    c.getInt(9),
+                    c.getInt(10),
+                    c.getInt(11) == 1
+            );
+        }
+        c.close();
+        db.close();
+        return w;
+    }
+
+    public Sessie getSessie(long id)
+    {
+        /*
+            private long id;
+            private String datum;
+            private long kindId;
+            private long voormetingId;
+            private long nametingId;
+            private long oefeningId;
+        */
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.query(
+                "sessie",
+                new String[] {"id", "datum", "kindId", "voormetingId", "nametingId", "oefeningId"  },
+                "id = ?",
+                new String[] { String.valueOf(id) },
+                null, null, null, null);
+
+
+        Sessie sessie = new Sessie();
+        if (c.moveToFirst()) {
+            sessie = new Sessie(c.getLong(0), c.getString(1), c.getLong(2), c.getLong(3), c.getLong(4), c.getLong(5));
+        }
+        c.close();
+        db.close();
+        return sessie;
     }
 
     public Kind getKind(long id) {
@@ -272,6 +342,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return lijst;
     }
 
+    public List<Woord> getDoelwoorden() {
+        List<Woord> lijst = new ArrayList<Woord>();
+        String query = "SELECT * from woord WHERE oefenwoord = 0";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Woord woord = new Woord(
+                        cursor.getLong(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7),
+                        cursor.getInt(8),
+                        cursor.getInt(9),
+                        cursor.getInt(10),
+                        cursor.getInt(11) == 1
+                );
+                lijst.add(woord);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return lijst;
+    }
+
+
     public Woord getWoord(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.query(
@@ -309,6 +411,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return woord;
     }
+
+
 
     public Woord getOefenwoord() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -374,8 +478,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         ContentValues values = new ContentValues();
-
-        long id = db.insert("meting", null, values);
+        //values.put("id", null);
+        long id = db.insert("meting", "id", values);
 
         db.close();
         return id;
@@ -406,6 +510,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("oefening4", oefening.isOefening4());
         values.put("oefening5", oefening.isOefening5());
         values.put("oefening6", oefening.isOefening6());
+        values.put("oefenwoordId", oefening.getOefenwoord().getId());
+        values.put("groep", oefening.getGroep());
 
         long id = db.insert("oefening", null, values);
         db.close();

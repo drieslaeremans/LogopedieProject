@@ -2,8 +2,6 @@ package be.thomasmore.logopedieproject.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -62,10 +60,11 @@ public class Oefening2Activity extends AppCompatActivity {
     public void volgendeOefening(View v)
     {
         if(!soundManager.isPlaying()) {
+            oefening.setOefening2(true);
+
             Intent intent = new Intent(this, Oefening3Activity.class);
             intent.putExtra("woord", woord );
             intent.putExtra("kind", kind);
-            oefening.setOefening2(true);
             intent.putExtra("oefening", oefening);
 
             startActivityForResult(intent, 1);
@@ -74,7 +73,7 @@ public class Oefening2Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        soundManager.ResetQueue();
+        soundManager.resetQueue();
         setResult(RESULT_CANCELED);
         finish();
     }

@@ -6,20 +6,23 @@ import java.io.Serializable;
 
 import be.thomasmore.logopedieproject.Helpers.DatabaseHelper;
 
+
 public class Oefening implements Serializable {
     private long id;
-    private boolean oefening1;
-    private boolean oefening2;
-    private boolean oefening3;
-    private boolean oefening4;
-    private boolean oefening5;
-    private boolean oefening6;
-    private long oefenwoordId;
+    private boolean oefening1 = false;
+    private boolean oefening2 = false;
+    private boolean oefening3 = false;
+    private boolean oefening4 = false;
+    private boolean oefening5 = false;
+    private boolean oefening6 = false;
+    private Woord oefenwoord;
+    private int groep;
+    private Conditie conditie;
 
     public Oefening() {
     }
 
-    public Oefening(long id, boolean oefening1, boolean oefening2, boolean oefening3, boolean oefening4, boolean oefening5, boolean oefening6, long oefenwoordId) {
+    public Oefening(long id, boolean oefening1, boolean oefening2, boolean oefening3, boolean oefening4, boolean oefening5, boolean oefening6, Woord oefenwoord, int groep) {
         this.id = id;
         this.oefening1 = oefening1;
         this.oefening2 = oefening2;
@@ -27,7 +30,17 @@ public class Oefening implements Serializable {
         this.oefening4 = oefening4;
         this.oefening5 = oefening5;
         this.oefening6 = oefening6;
-        this.oefenwoordId = oefenwoordId;
+        this.oefenwoord = oefenwoord;
+        this.groep = groep;
+
+        bepaalConditie();
+    }
+
+    public Conditie bepaalConditie()
+    {
+
+        // Aan de hand van de geselecteerde groep de conditie bepalen
+        return Woord.bepaalConditie(this.groep, this.oefenwoord);
     }
 
     public long getId() {
@@ -86,13 +99,27 @@ public class Oefening implements Serializable {
         this.oefening6 = oefening6;
     }
 
-    public long getOefenwoordId() {
-        return oefenwoordId;
+    public Woord getOefenwoord() {
+        return oefenwoord;
     }
 
-    public void setOefenwoordId(long oefenwoordId) {
-        this.oefenwoordId = oefenwoordId;
+    public void setOefenwoord(Woord oefenwoord) {
+        this.oefenwoord = oefenwoord;
+        bepaalConditie();
+
     }
+
+
+
+    public int getGroep() {
+        return groep;
+    }
+
+    public void setGroep(int groep) {
+        this.groep = groep;
+        bepaalConditie();
+    }
+
 
     public String getResult() {
         boolean[] results = {isOefening1(), isOefening2(), isOefening3(), isOefening4(), isOefening5(), isOefening6()};
@@ -101,8 +128,8 @@ public class Oefening implements Serializable {
     }
 
     public String toStringOefenwoord(Context context) {
-        DatabaseHelper db = new DatabaseHelper(context);
-        return db.getWoord(getOefenwoordId()).getWoord();
+        //DatabaseHelper db = new DatabaseHelper(context);
+        return oefenwoord.getWoord();
     }
 
     private int getScore(boolean... results) {

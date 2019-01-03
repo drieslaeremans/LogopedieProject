@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="be.thomasmore.logopedieproject">
 
-    <!--<uses-sdk android:minSdkVersion="15" />-->
+    <!-- <uses-sdk android:minSdkVersion="15" /> -->
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -64,6 +64,26 @@
         <activity
             android:name=".Activities.OefeningPreteaching"
             android:label="@string/title_activity_oefening_preteaching"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.Oefening61Activity"
+            android:label="@string/title_activity_oefening61"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.Oefening62Activity"
+            android:label="@string/title_activity_oefening62"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.Oefening63Activity"
+            android:label="@string/title_activity_oefening63"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.OefeningResultaatActivity"
+            android:label="@string/title_activity_oefening_resultaat"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.SessieOverzichtActivity"
+            android:label="@string/title_activity_sessie_overzicht"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

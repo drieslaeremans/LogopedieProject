@@ -17,6 +17,7 @@ public class Woord implements Serializable {
     private boolean oefenwoord;
 
     public Woord() {
+
     }
 
     public Woord(long id, String lidwoord, String woord, String definitie, String juisteContext, String fouteContext,
@@ -139,4 +140,23 @@ public class Woord implements Serializable {
     public String toStringVolledigWoord() {
         return lidwoord + " " + woord;
     }
+
+
+    public static Conditie bepaalConditie(int groep, Woord woord)
+    {
+        Conditie conditie = Conditie.ONGELDIGE_CONDITIE;
+
+        if(woord.getConditie1() == groep)
+            conditie = Conditie.TRAINEN_NIET_FONOLOGISCH_VERKENNEN;
+        else if(woord.getConditie2() == groep)
+            conditie = Conditie.TRAINEN_FONOLOGISCH_VERKENNEN_ZOEMEND;
+        else if(woord.getConditie3() == groep)
+            conditie = Conditie.TRAINEN_FONOLOGISCH_VERKENNEN_KLANKGROEPEN;
+
+
+
+        System.out.println("CONDITIE: " + woord.getWoord() + " in groep "+groep+" is: " + conditie.ordinal());
+        return conditie;
+    }
+
 }

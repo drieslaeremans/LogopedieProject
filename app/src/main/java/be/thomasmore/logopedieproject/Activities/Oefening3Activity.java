@@ -2,8 +2,6 @@ package be.thomasmore.logopedieproject.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -78,33 +76,33 @@ public class Oefening3Activity extends AppCompatActivity {
 
     public void speelGeluid()
     {
-        soundManager.ResetQueue();
+        soundManager.resetQueue();
 
         if(contextType)
-            soundManager.AddQueue( "juistecontext_" + woord.getWoord());
+            soundManager.addQueue( "juistecontext_" + woord.getWoord());
         else
-            soundManager.AddQueue( "foutecontext_" + woord.getWoord());
+            soundManager.addQueue( "foutecontext_" + woord.getWoord());
 
 
 
-        soundManager.PlayQueue();
+        soundManager.playQueue();
     }
 
 
     public void speelIntro()
     {
-        soundManager.ResetQueue();
+        soundManager.resetQueue();
 
-        soundManager.AddQueue( "zin_ikzou");
-        soundManager.AddQueue( "woord_" + woord.getWoord());
-        soundManager.AddQueue( "zin_graagineenzinnetje");
+        soundManager.addQueue( "zin_ikzou");
+        soundManager.addQueue( "woord_" + woord.getWoord());
+        soundManager.addQueue( "zin_graagineenzinnetje");
 
         if(contextType)
-            soundManager.AddQueue( "juistecontext_" + woord.getWoord());
+            soundManager.addQueue( "juistecontext_" + woord.getWoord());
         else
-            soundManager.AddQueue( "foutecontext_" + woord.getWoord());
+            soundManager.addQueue( "foutecontext_" + woord.getWoord());
 
-        soundManager.PlayQueue();
+        soundManager.playQueue();
     }
 
     public void onClickWoordSpreken(View v)
@@ -116,7 +114,7 @@ public class Oefening3Activity extends AppCompatActivity {
 
     public void volgendeOefening()
     {
-        soundManager.ResetQueue();
+        soundManager.resetQueue();
         soundManager.stopPlaying();
 
         Intent intent = new Intent(this, Oefening4Activity.class);
@@ -129,12 +127,12 @@ public class Oefening3Activity extends AppCompatActivity {
 
     public void checkAntwoord( boolean invoer )
     {
-        soundManager.ResetQueue();
+        soundManager.resetQueue();
 
         if(invoer == contextType)
         {
-            soundManager.AddQueue( "zin_goedzo");
-            soundManager.PlayQueue();
+            soundManager.addQueue( "zin_goedzo");
+            soundManager.playQueue();
 
             duimNegatief.setEnabled(false);
             duimNegatief.setClickable(false);
@@ -155,13 +153,13 @@ public class Oefening3Activity extends AppCompatActivity {
                 public void run() {
                     volgendeOefening();
                 }
-            }, 2000);
+            }, 4000);
 
         } else
         {
             oefening.setOefening3(false);
-            soundManager.AddQueue( "zin_oepsdatwasnietjuist");
-            soundManager.PlayQueue();
+            soundManager.addQueue( "zin_oepsdatwasnietjuist");
+            soundManager.playQueue();
         }
 
         System.out.println("Oefening3: checkAntwoord");
@@ -171,19 +169,21 @@ public class Oefening3Activity extends AppCompatActivity {
 
     public void clickDuimNegatief(View v)
     {
+
         System.out.println("Oefening3: duim negatief aangeduid");
         checkAntwoord(false);
     }
 
     public void clickDuimPositief(View v)
     {
+
         System.out.println("Oefening3: duim positief aangeduid");
         checkAntwoord(true);
     }
 
     @Override
     public void onBackPressed() {
-        soundManager.ResetQueue();
+        soundManager.resetQueue();
         setResult(RESULT_CANCELED);
         finish();
     }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Activities.Oefening62Activity"
+    tools:showIn="@layout/activity_oefening62">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/bij"
+                android:background="@drawable/bij"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/doelwoord"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            >
+            <TextView
+                android:id="@+id/woord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doelwoord"
+                android:textSize="45sp"
+                />
+            <ImageView
+                android:id="@+id/woordfoto"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="5dp"
+                />
+
+            <Button
+                android:layout_marginTop="100dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/oefeningen_afsluiten"
+                android:onClick="terugNaarDetailKindActivity"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

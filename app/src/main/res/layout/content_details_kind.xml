@@ -50,6 +50,16 @@
             android:layout_height="wrap_content"
             android:text="@string/detailskindactivity_nameting"
             android:onClick="onButtonClickStartNameting"/>
+
+        <Button
+            android:layout_margin="10dp"
+            android:width="200dp"
+            android:id="@+id/buttonResultaat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detailskindactivity_resultaat"
+            android:onClick="onButtonClickSessieOpslagen"/>
+
     </LinearLayout>
 
 

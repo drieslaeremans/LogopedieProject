@@ -2,8 +2,6 @@ package be.thomasmore.logopedieproject.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,7 +12,6 @@ import be.thomasmore.logopedieproject.Classes.Kind;
 import be.thomasmore.logopedieproject.Classes.Oefening;
 import be.thomasmore.logopedieproject.Classes.SoundManager;
 import be.thomasmore.logopedieproject.Classes.Woord;
-import be.thomasmore.logopedieproject.Classes.WoordInMeting;
 import be.thomasmore.logopedieproject.R;
 
 public class Oefening1Activity extends AppCompatActivity {
@@ -38,10 +35,10 @@ public class Oefening1Activity extends AppCompatActivity {
         leesWoord();
 
         soundManager = new SoundManager(this);
-        spreek("woord_" + woord.getWoord().toLowerCase());
+        //spreek("woord_" + woord.getWoord().toLowerCase());
         spreek("definitie_" + woord.getWoord().toLowerCase());
 
-        soundManager.PlayQueue();
+        soundManager.playQueue();
     }
 
     private void leesWoord()
@@ -58,22 +55,23 @@ public class Oefening1Activity extends AppCompatActivity {
     }
 
     public void onClickDefinitieSpreken(View v) {
-        soundManager.ResetQueue();
+        soundManager.resetQueue();
         spreek("definitie_" + woord.getWoord().toLowerCase());
-        soundManager.PlayQueue();
+        soundManager.playQueue();
     }
 
     private void spreek(String bestand) {
-        soundManager.AddQueue(bestand);
+        soundManager.addQueue(bestand);
     }
 
     public void volgendeOefening(View v) {
-        soundManager.ResetQueue();
+        soundManager.resetQueue();
+        soundManager.stopPlaying();
+        oefening.setOefening1(true);
 
         Intent intent = new Intent(this, Oefening2Activity.class);
         intent.putExtra("woord", woord);
         intent.putExtra("kind", kind);
-        oefening.setOefening1(true);
         intent.putExtra("oefening", oefening);
 
         startActivityForResult(intent, 1);
@@ -82,14 +80,14 @@ public class Oefening1Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        soundManager.ResetQueue();
+        soundManager.resetQueue();
         setResult(RESULT_CANCELED);
         finish();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        soundManager.ResetQueue();
+        soundManager.resetQueue();
         if (requestCode == 1) {
             if (resultCode == RESULT_CANCELED) {
                 setResult(RESULT_CANCELED);
