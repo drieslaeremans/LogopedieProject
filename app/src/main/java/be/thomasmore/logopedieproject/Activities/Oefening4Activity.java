@@ -23,8 +23,6 @@ import be.thomasmore.logopedieproject.Classes.SoundManager;
 import be.thomasmore.logopedieproject.Classes.Woord;
 import be.thomasmore.logopedieproject.R;
 
-import static java.lang.Thread.sleep;
-
 public class Oefening4Activity extends AppCompatActivity implements ImageView.OnClickListener {
     private Kind kind;
     private Woord woord;

@@ -3,8 +3,6 @@ package be.thomasmore.logopedieproject.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -17,7 +15,6 @@ import be.thomasmore.logopedieproject.Classes.Kind;
 import be.thomasmore.logopedieproject.Classes.Oefening;
 import be.thomasmore.logopedieproject.Classes.SoundManager;
 import be.thomasmore.logopedieproject.Classes.Woord;
-import be.thomasmore.logopedieproject.Helpers.DatabaseHelper;
 import be.thomasmore.logopedieproject.R;
 
 public class Oefening63Activity extends AppCompatActivity {

@@ -3,22 +3,11 @@ package be.thomasmore.logopedieproject.Activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import be.thomasmore.logopedieproject.Classes.SoundManager;
-import be.thomasmore.logopedieproject.Classes.Woord;
-import be.thomasmore.logopedieproject.Helpers.DatabaseHelper;
 import be.thomasmore.logopedieproject.R;
 
 public class MainActivity extends AppCompatActivity {

@@ -6,9 +6,6 @@ import android.media.MediaPlayer;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.thomasmore.logopedieproject.Activities.MainActivity;
-import be.thomasmore.logopedieproject.R;
-
 public  class SoundManager implements MediaPlayer.OnCompletionListener {
 
     private MediaPlayer mediaPlayer;

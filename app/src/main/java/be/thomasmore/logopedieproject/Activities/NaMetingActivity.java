@@ -2,8 +2,6 @@ package be.thomasmore.logopedieproject.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,7 +11,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.thomasmore.logopedieproject.Adapters.AdapterKind;
 import be.thomasmore.logopedieproject.Adapters.AdapterWoordInMeting;
 import be.thomasmore.logopedieproject.Classes.Meting;
 import be.thomasmore.logopedieproject.Classes.WoordInMeting;

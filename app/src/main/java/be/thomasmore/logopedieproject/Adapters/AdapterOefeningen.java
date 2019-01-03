@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import be.thomasmore.logopedieproject.Classes.Oefening;
-import be.thomasmore.logopedieproject.Classes.WoordInMeting;
 import be.thomasmore.logopedieproject.Helpers.DatabaseHelper;
 import be.thomasmore.logopedieproject.R;
 

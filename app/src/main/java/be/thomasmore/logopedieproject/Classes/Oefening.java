@@ -4,8 +4,6 @@ import android.content.Context;
 
 import java.io.Serializable;
 
-import be.thomasmore.logopedieproject.Helpers.DatabaseHelper;
-
 
 public class Oefening implements Serializable {
     private long id;

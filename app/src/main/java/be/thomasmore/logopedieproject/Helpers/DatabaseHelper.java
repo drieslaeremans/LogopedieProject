@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.thomasmore.logopedieproject.Classes.Conditie;
 import be.thomasmore.logopedieproject.Classes.Kind;
 import be.thomasmore.logopedieproject.Classes.Meting;
 import be.thomasmore.logopedieproject.Classes.Oefening;
