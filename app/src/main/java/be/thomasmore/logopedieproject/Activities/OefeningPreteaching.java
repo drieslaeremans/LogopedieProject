@@ -55,7 +55,7 @@ public class OefeningPreteaching extends AppCompatActivity {
                 getResources().getIdentifier("preteaching", "drawable", getPackageName())
         );
 
-        soundManager.Play("juistecontext_" + woord.getWoord().toLowerCase());
+        soundManager.Play("preteachingplaat");
     }
 
     public void onClickPreteaching(View v) {
@@ -65,7 +65,7 @@ public class OefeningPreteaching extends AppCompatActivity {
 
             final TextView textView = (TextView) findViewById(R.id.preteaching_timer);
 
-            new CountDownTimer(1000, 1000) {
+            new CountDownTimer(4000, 1000) {
                 public void onTick(long millisUntilFinished) {
                     textView.setText("" + millisUntilFinished / 1000);
                 }

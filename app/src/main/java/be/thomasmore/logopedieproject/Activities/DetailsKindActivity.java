@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+import be.thomasmore.logopedieproject.Adapters.AdapterOefeningen;
 import be.thomasmore.logopedieproject.Classes.Conditie;
 import be.thomasmore.logopedieproject.Classes.Kind;
 import be.thomasmore.logopedieproject.Classes.Meting;
@@ -59,6 +61,8 @@ public class DetailsKindActivity extends AppCompatActivity {
         button.setEnabled(false);
 
 
+        button = (Button) findViewById(R.id.buttonResultaat);
+        button.setEnabled(false);
 
         db = new DatabaseHelper(this);
 
@@ -70,10 +74,11 @@ public class DetailsKindActivity extends AppCompatActivity {
 
         sessie = new Sessie();
         sessie.setKindId(id);
-        sessie.setDatum(""); // Huidige datum automatisch in setter toegepast
+        sessie.setDatum(); // Huidige datum automatisch in setter toegepast
 
         if(id > 0)
             leesKind(id);
+
     }
 
     private void leesKind(long id)
@@ -90,6 +95,52 @@ public class DetailsKindActivity extends AppCompatActivity {
                 updateKindDialog(kind);
             }
         });
+
+        leesSessies();
+    }
+
+    private void leesSessies()
+    {
+        final ArrayList<String> items = new ArrayList<String>();
+        final List<Sessie> dbItems = db.getSessies(kind.getId());
+
+        for(int i = 0; i < dbItems.size(); i++)
+            items.add(dbItems.get(i).getDatum());
+
+
+        final ArrayAdapter<String> adapter;
+        adapter = new ArrayAdapter<String>(  this,
+                android.R.layout.simple_list_item_1,
+                items
+        );
+
+        ListView listView = (ListView) findViewById(R.id.sessies);
+
+
+        listView.setAdapter(adapter);
+
+        final Intent intent = new Intent(this, SessieOverzichtActivity.class);
+        listView.setOnItemClickListener(
+            new AdapterView.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(AdapterView<?> arg0, View view,
+                                        int position, long id) {
+                    Sessie sessie = dbItems.get(position);
+
+
+                    intent.putExtra("sessieId", sessie.getId());
+                    startActivity(intent);
+
+                    //Take action here.
+                }
+            }
+    );
+
+
+
+
+
     }
 
     private void updateKindDialog(final Kind kind)
@@ -292,6 +343,13 @@ public class DetailsKindActivity extends AppCompatActivity {
         System.out.println("Oefening: "+oefening);
 
         long id = db.sessieOpslagen(sessie, voormeting, voormetingWoorden, nameting, nametingWoorden, oefening );
+
+
+        Button button = (Button) findViewById(R.id.buttonResultaat);
+        button.setEnabled(false);
+
+
+        System.out.println("Id : " +id);
 
         Intent intent = new Intent(this, SessieOverzichtActivity.class);
         intent.putExtra("sessieId", id);

@@ -14,10 +14,8 @@
             android:textColor="#000"
             android:id="@+id/naam"
             android:padding="10dp"
-            android:text="test"
-           >
+            android:text="test"/>
 
-        </TextView>
         <ImageButton
             android:id="@+id/edit"
             android:layout_width="50dp"

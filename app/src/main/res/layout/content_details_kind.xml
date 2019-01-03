@@ -61,6 +61,26 @@
             android:text="@string/detailskindactivity_resultaat"
             android:onClick="onButtonClickSessieOpslagen"/>
 
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/detailskindactivity_sessies"
+                android:textSize="25sp"
+
+                />
+            <ListView
+                android:layout_marginTop="50dp"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sessies">
+
+            </ListView>
+        </RelativeLayout>
     </LinearLayout>
 
 

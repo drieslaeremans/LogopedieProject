@@ -36,8 +36,7 @@ public class Sessie implements Serializable {
         return datum;
     }
 
-    public void setDatum(String datum) {
-        this.datum = datum;
+    public void setDatum() {
         this.datum = getCurrentDDMMYYYYDatum();
     }
 

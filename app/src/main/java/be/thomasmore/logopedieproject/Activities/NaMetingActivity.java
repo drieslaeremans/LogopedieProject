@@ -39,10 +39,10 @@ public class NaMetingActivity extends AppCompatActivity {
 
         meting = (Meting) intent.getSerializableExtra("meting");
         gemetenWoorden = (List<WoordInMeting>) intent.getSerializableExtra("list");
-        for (int i = 0; i < gemetenWoorden.size(); i++)
+        /*for (int i = 0; i < gemetenWoorden.size(); i++)
         {
             System.out.println("TEST: "+ gemetenWoorden.get(i).getWoordId() + ": " + gemetenWoorden.get(i).isJuistOfFout());
-        }
+        }*/
 
         AdapterWoordInMeting adapterWoordInMeting = new AdapterWoordInMeting(getApplicationContext(), gemetenWoorden);
 

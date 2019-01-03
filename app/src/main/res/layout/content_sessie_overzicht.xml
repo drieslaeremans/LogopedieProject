@@ -8,10 +8,12 @@
     tools:context=".Activities.SessieOverzichtActivity"
     tools:showIn="@layout/activity_sessie_overzicht">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="15dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -20,7 +22,111 @@
             android:id="@+id/kind"
             />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:gravity="end"
+            android:id="@+id/datum"
+            />
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:background="@drawable/border_blue"
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sessie_voormeting_title"
+                        android:textSize="20sp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="550dp"
+                        android:orientation="vertical"
+                        android:layout_marginTop="25dp">
+                        <ListView
+                            android:id="@+id/listviewWoordenInMeting"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:dividerHeight="1dp">
+                        </ListView>
+                    </RelativeLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:background="@drawable/border_blue"
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="25dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/titelOefeningen"
+                        android:text="@string/sessie_oefening_title"
+                        android:textSize="20sp"/>
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="400dp"
+                        android:orientation="vertical"
+                        android:layout_marginTop="25dp">
+                        <ListView
+                            android:id="@+id/listviewOefening"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:dividerHeight="1dp">
+                        </ListView>
+                    </RelativeLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:background="@drawable/border_blue"
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="25dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sessie_nameting_title"
+                        android:textSize="20sp"/>
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="550dp"
+                        android:orientation="vertical"
+                        android:layout_marginTop="25dp">
+                        <ListView
+                            android:id="@+id/listviewWoordenInMeting2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:dividerHeight="1dp">
+                        </ListView>
+                    </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
+
+
 
 </android.support.constraint.ConstraintLayout>

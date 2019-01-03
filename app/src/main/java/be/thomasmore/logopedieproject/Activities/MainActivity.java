@@ -34,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
     public void onButtonClickStart(View v) {
         Intent intent = new Intent(this, OverzichtKinderenActivity.class);
         startActivity(intent);
+
+/*
+        Intent intent = new Intent(this, SessieOverzichtActivity.class);
+        intent.putExtra("sessieId", (long)5);
+        startActivity(intent);
+*/
+
     }
 
     public void onButtonClickInstellingen(View v) {

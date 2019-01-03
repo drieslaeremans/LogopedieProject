@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.thomasmore.logopedieproject.Classes.Conditie;
 import be.thomasmore.logopedieproject.Classes.Kind;
 import be.thomasmore.logopedieproject.Classes.Meting;
 import be.thomasmore.logopedieproject.Classes.Oefening;
@@ -216,6 +217,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return w;
     }
 
+    public List<Sessie> getSessies(long kindId)
+    {
+         /*
+            private long id;
+            private String datum;
+            private long kindId;
+            private long voormetingId;
+            private long nametingId;
+            private long oefeningId;
+        */
+
+        List<Sessie> lijst = new ArrayList<Sessie>();
+        String query = "SELECT * from sessie ORDER BY datum DESC";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        Sessie sessie = new Sessie();
+
+        if (c.moveToFirst()) {
+            do {
+                sessie = new Sessie(c.getLong(0), c.getString(1), c.getLong(2), c.getLong(3), c.getLong(4), c.getLong(5));
+                lijst.add(sessie);
+            } while (c.moveToNext());
+        }
+        c.close();
+        db.close();
+        return lijst;
+
+    }
+
+
     public Sessie getSessie(long id)
     {
         /*
@@ -372,6 +405,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return lijst;
     }
+
+
 
 
     public Woord getWoord(long id) {
@@ -533,5 +568,74 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return id;
+    }
+
+    public List<WoordInMeting> getWoordenInMeting(long metingId) {
+        /*
+            private long id;
+            private long woordId;
+            private long metingId;
+            private boolean juistOfFout;
+         */
+        List<WoordInMeting> lijst = new ArrayList<WoordInMeting>();
+        String query = "SELECT * from woordInMeting where metingId = ?";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, new String[] {String.valueOf(metingId)});
+
+
+        if (cursor.moveToFirst()) {
+            do {
+                WoordInMeting woordInMeting = new WoordInMeting(cursor.getLong(0), cursor.getLong(1), cursor.getLong(2), cursor.getInt(3) == 1);
+                lijst.add(woordInMeting);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return lijst;
+    }
+
+    public Oefening getOefening(long id) {
+        /*
+              "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "oefening1 BOOLEAN, " +
+                "oefening2 BOOLEAN, " +
+                "oefening3 BOOLEAN, " +
+                "oefening4 BOOLEAN, " +
+                "oefening5 BOOLEAN, " +
+                "oefening6 BOOLEAN, " +
+                "oefenwoordId INTEGER, " +
+                "groep INTEGER, " +
+        */
+
+        Oefening oefening = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.query(
+                "oefening",
+                new String[] {"id", "oefening1", "oefening2","oefening3", "oefening4","oefening5", "oefening6", "oefenwoordId", "groep" },
+                "id = ?",
+                new String[] { String.valueOf(id) },
+                null, null, null, null);
+
+
+        Kind kind = new Kind();
+        if (c.moveToFirst()) {
+            oefening = new Oefening(
+                    c.getLong(0),
+                    c.getInt(1)==1,
+                    c.getInt(2)==1,
+                    c.getInt(3)==1,
+                    c.getInt(4)==1,
+                    c.getInt(5)==1,
+                    c.getInt(6)==1,
+                    this.getWoord(c.getLong(7)),
+                    c.getInt(8)
+
+                    );
+        }
+        c.close();
+        db.close();
+        return oefening;
     }
 }

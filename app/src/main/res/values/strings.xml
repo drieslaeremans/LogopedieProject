@@ -16,6 +16,8 @@
     <string name="title_activity_oefening62">Oefening 6: zoemend</string>
     <string name="title_activity_oefening63">Oefening 6: klankgroepen</string>
     <string name="title_activity_details_kind">Details Kind</string>
+    <string name="title_activity_sessie_overzicht">Sessie: overzicht</string>
+    <string name="title_activity_oefening_resultaat">Oefeningen: resultaat</string>
 
     <!-- Activity: DetailsKind -->
     <string name="detailskindactivity_title">Naam van het kind</string>
@@ -23,6 +25,7 @@
     <string name="detailskindactivity_oefeningen">Oefeningen starten</string>
     <string name="detailskindactivity_nameting">Nameting starten</string>
     <string name="detailskindactivity_resultaat">Resultaten opslaan</string>
+    <string name="detailskindactivity_sessies">Sessies</string>
 
     <!-- Activity: NaMeting -->
     <string name="nametingactivity_einde">Meting afronden</string>
@@ -65,10 +68,12 @@
     <string name="oefeningen_sadEmojiContentDescription">Droevige emoji</string>
     <string name="oefeningen_bijContentDescription">Droevige emoji</string>
     <string name="oefeningen_konijnContentDescription">Droevige emoji</string>
-    <string name="title_activity_oefening_resultaat">Oefeningen: resultaat</string>
 
-
+    <!-- Sessie -->
+    <string name="sessie_voormeting_title">Voormeting</string>
+    <string name="sessie_nameting_title">Nameting</string>
+    <string name="sessie_oefening_title">Oefeningen</string>
     <string name="oefeningen_afsluiten">Terug naar overzicht</string>
-    <string name="title_activity_sessie_overzicht">Sessie: overzicht</string>
+
 
 </resources>
