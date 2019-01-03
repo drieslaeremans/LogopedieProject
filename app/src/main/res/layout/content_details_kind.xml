@@ -37,6 +37,7 @@
                 android:layout_margin="5dp"
                 android:onClick="onButtonClickStartVoormeting"
                 android:text="@string/detailskindactivity_voormeting"
+                android:textSize="13sp"
                 android:layout_weight="1"
                 style="?android:attr/borderlessButtonStyle"/>
 
@@ -47,6 +48,7 @@
                 android:layout_margin="5dp"
                 android:onClick="onButtonClickStartOefeningen"
                 android:text="@string/detailskindactivity_oefeningen"
+                android:textSize="12sp"
                 android:layout_weight="1"
                 style="?android:attr/borderlessButtonStyle"/>
 
@@ -57,6 +59,7 @@
                 android:layout_margin="5dp"
                 android:onClick="onButtonClickStartNameting"
                 android:text="@string/detailskindactivity_nameting"
+                android:textSize="12sp"
                 android:layout_weight="1"
                 style="?android:attr/borderlessButtonStyle"/>
         </LinearLayout>
