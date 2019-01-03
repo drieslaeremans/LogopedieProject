@@ -195,8 +195,7 @@ public class Oefening3Activity extends AppCompatActivity {
                 setResult(RESULT_CANCELED);
                 finish();
             } else if (resultCode == RESULT_OK) {
-                Intent _intent = new Intent();
-                setResult(RESULT_OK, _intent);
+                setResult(RESULT_OK, intent);
                 finish();
             }
         }

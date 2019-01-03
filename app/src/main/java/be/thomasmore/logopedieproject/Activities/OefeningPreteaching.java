@@ -78,7 +78,7 @@ public class OefeningPreteaching extends AppCompatActivity {
     }
 
     private void startOefeningen() {
-        Intent intent = new Intent(this, Oefening61Activity.class);
+        Intent intent = new Intent(this, Oefening1Activity.class);
         intent.putExtra("kind", this.kind);
         intent.putExtra("woord", this.woord);
 
@@ -108,8 +108,7 @@ public class OefeningPreteaching extends AppCompatActivity {
 
                 finish();
             } else if (resultCode == RESULT_OK) {
-                Intent _intent = new Intent();
-                setResult(RESULT_OK, _intent);
+                setResult(RESULT_OK, intent);
                 finish();
             }
         }

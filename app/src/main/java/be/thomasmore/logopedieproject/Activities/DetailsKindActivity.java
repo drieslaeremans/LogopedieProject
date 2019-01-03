@@ -326,6 +326,13 @@ public class DetailsKindActivity extends AppCompatActivity {
                 //Todo: Na-oefening activity maken die resultaat van oefening toont?
                 //Todo: Vanuit Na-oefening activity het oefening-object meegeven als intent (analoog aan Nameting->meting->this)
                 oefening = (Oefening) intent.getSerializableExtra("oefening");
+                System.out.println("Oefening: " +oefening.isOefening1());
+                System.out.println("Oefening: " +oefening.isOefening2());
+                System.out.println("Oefening: " +oefening.isOefening3());
+                System.out.println("Oefening: " +oefening.isOefening4());
+                System.out.println("Oefening: " +oefening.isOefening5());
+                System.out.println("Oefening: " +oefening.isOefening6());
+                System.out.println("Oefening: " +oefening);
 
                 Button button = (Button) findViewById(R.id.buttonOefeningen);
                 button.setEnabled(false);

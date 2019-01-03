@@ -156,11 +156,12 @@ public class Oefening62Activity extends AppCompatActivity {
     }
     public void terugNaarDetailKindActivity(View v)
     {
+        oefening.setOefening6(true);
+
         Intent intent = new Intent();
         intent.putExtra("oefening", oefening);
-        setResult(RESULT_OK);
+        setResult(RESULT_OK, intent);
 
-        oefening.setOefening6(true);
         finish();
     }
     @Override

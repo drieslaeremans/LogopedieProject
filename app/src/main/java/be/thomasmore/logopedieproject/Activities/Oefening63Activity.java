@@ -109,7 +109,7 @@ public class Oefening63Activity extends AppCompatActivity {
         oefening.setOefening6(true);
 
         intent.putExtra("oefening", oefening);
-        setResult(RESULT_OK);
+        setResult(RESULT_OK, intent);
 
         finish();
 
