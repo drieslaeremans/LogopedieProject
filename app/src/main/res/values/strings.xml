@@ -18,6 +18,7 @@
     <string name="title_activity_details_kind">Details Kind</string>
 
     <!-- Activity: DetailsKind -->
+    <string name="detailskindactivity_title">Naam van het kind</string>
     <string name="detailskindactivity_voormeting">Voormeting starten</string>
     <string name="detailskindactivity_oefeningen">Oefeningen starten</string>
     <string name="detailskindactivity_nameting">Nameting starten</string>
@@ -57,6 +58,13 @@
     <string name="oefeningen_doelwoord">Doelwoord</string>
     <string name="oefeningen_speakerContentDescription">Speaker</string>
     <string name="oefeningen_afbeeldingContentDescription">Afbeelding</string>
+    <string name="oefeningen_preteachingContentDescription">Afbeelding</string>
+    <string name="oefeningen_duimOmhoogContentDescription">Duim omhoog</string>
+    <string name="oefeningen_duimOmlaagContentDescription">Duim omlaag</string>
+    <string name="oefeningen_blijEmojiContentDescription">Blije emoji</string>
+    <string name="oefeningen_sadEmojiContentDescription">Droevige emoji</string>
+    <string name="oefeningen_bijContentDescription">Droevige emoji</string>
+    <string name="oefeningen_konijnContentDescription">Droevige emoji</string>
     <string name="title_activity_oefening_resultaat">Oefeningen: resultaat</string>
 
 

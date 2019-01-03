@@ -24,33 +24,36 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             >
+
             <TextView
                 android:id="@+id/woord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Doelwoord"
-                android:textSize="25sp"/>
+                android:text="@string/oefeningen_doelwoord"
+                android:textSize="25sp" />
+
             <ImageButton
                 android:id="@+id/speaker"
-                android:tag="2"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/speaker"
+                android:contentDescription="@string/oefeningen_afbeeldingContentDescription"
                 android:maxWidth="35dp"
                 android:maxHeight="35dp"
-                android:background="@drawable/speaker"
-                android:layout_marginLeft="5dp"
                 android:onClick="onClickWoordSpreken"
-                />
+                android:tag="2"
+                android:layout_marginStart="5dp" />
         </LinearLayout>
 
 
         <android.support.v7.widget.AppCompatImageButton
-            android:background="#00000000"
-            android:layout_marginTop="50dp"
-            android:layout_width="250dp"
+            android:id="@+id/afbeelding"
+            android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:scaleType="center"
-            android:id="@+id/afbeelding"/>
+            android:layout_marginTop="50dp"
+            android:background="#00000000"
+            android:scaleType="center" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,21 +63,24 @@
             android:gravity="center_horizontal">
 
             <ImageButton
+                android:id="@+id/duimPositief"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:background="#00000000"
+                android:contentDescription="@string/oefeningen_duimOmhoogContentDescription"
                 android:onClick="clickDuimPositief"
-                android:src="@drawable/thumbup"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
                 android:scaleType="fitCenter"
-                android:id="@+id/duimPositief"/>
+                android:src="@drawable/thumbup" />
+
             <ImageButton
-                android:background="#00000000"
-                android:src="@drawable/thumbdown"
-                android:scaleType="fitCenter"
-                android:onClick="clickDuimNegatief"
+                android:id="@+id/duimNegatief"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:id="@+id/duimNegatief"/>
+                android:background="#00000000"
+                android:contentDescription="@string/oefeningen_duimOmlaagContentDescription"
+                android:onClick="clickDuimNegatief"
+                android:scaleType="fitCenter"
+                android:src="@drawable/thumbdown" />
 
         </LinearLayout>
     </LinearLayout>

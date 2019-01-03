@@ -14,14 +14,15 @@
         android:orientation="vertical"
         android:layout_height="wrap_content"
         android:padding="10dp">
+
         <TextView
+            android:id="@+id/naam"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/naam"
 
-            android:textSize="30sp"
-            android:text="test"
-            android:textColor="#000"/>
+            android:text="@string/detailskindactivity_title"
+            android:textColor="#000"
+            android:textSize="30sp" />
 
 
         <Button

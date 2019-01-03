@@ -15,14 +15,15 @@
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="200dp">
+
             <ImageView
+                android:id="@+id/konijn"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginTop="100px"
-                android:id="@+id/konijn"
+                android:layout_marginTop="100dp"
                 android:background="@drawable/konijn"
-                android:onClick="onKonijnClick"
-                />
+                android:contentDescription="@string/oefeningen_konijnContentDescription"
+                android:onClick="onKonijnClick" />
         </LinearLayout>
 
         <LinearLayout
@@ -35,21 +36,23 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             >
+
             <TextView
                 android:id="@+id/woord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Doelwoord"
-                android:textSize="45sp"
-                />
+                android:text="@string/oefeningen_doelwoord"
+                android:textSize="45sp" />
+
             <ImageView
                 android:id="@+id/woordfoto"
                 android:layout_width="250dp"
                 android:layout_height="150dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
-                android:onClick="onKonijnClick"
 
-                />
+                android:contentDescription="@string/oefeningen_afbeeldingContentDescription"
+                android:onClick="onKonijnClick" />
             <Button
                 android:layout_marginTop="100dp"
                 android:layout_height="wrap_content"

@@ -24,19 +24,21 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             >
+
             <TextView
                 android:id="@+id/woord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Doelwoord"
-                android:textSize="45sp"
-                />
+                android:text="@string/oefeningen_doelwoord"
+                android:textSize="45sp" />
+
             <ImageView
                 android:id="@+id/woordfoto"
                 android:layout_width="250dp"
                 android:layout_height="150dp"
                 android:layout_marginLeft="5dp"
-                />
+                android:contentDescription="@string/oefeningen_afbeeldingContentDescription"
+                android:layout_marginStart="5dp" />
 
         </LinearLayout>
 
@@ -47,23 +49,27 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_horizontal">
-            <ImageButton
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:background="@drawable/smiley_happy"
-                android:layout_marginRight="25dp"
-                android:onClick="onSmileyClick"
 
-                android:tag=":)"
-                />
             <ImageButton
                 android:layout_width="125dp"
                 android:layout_height="125dp"
-                android:background="@drawable/smiley_sad"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/smiley_happy"
+                android:contentDescription="@string/oefeningen_blijEmojiContentDescription"
+
+                android:onClick="onSmileyClick"
+                android:tag=":)"
+                android:layout_marginEnd="25dp" />
+
+            <ImageButton
+                android:layout_width="125dp"
+                android:layout_height="125dp"
                 android:layout_marginLeft="25dp"
+                android:background="@drawable/smiley_sad"
+                android:contentDescription="@string/oefeningen_sadEmojiContentDescription"
                 android:onClick="onSmileyClick"
                 android:tag=":("
-                />
+                android:layout_marginStart="25dp" />
         </LinearLayout>
         <Button
             android:layout_marginTop="100dp"
