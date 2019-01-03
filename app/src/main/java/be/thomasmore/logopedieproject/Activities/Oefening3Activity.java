@@ -28,6 +28,7 @@ public class Oefening3Activity extends AppCompatActivity {
 
     ImageButton duimPositief;
     ImageButton duimNegatief;
+    private boolean retry = false;
 
     private boolean contextType; // true: juisteContext, false: fouteContext
     @Override
@@ -158,8 +159,14 @@ public class Oefening3Activity extends AppCompatActivity {
         } else
         {
             oefening.setOefening3(false);
-            soundManager.addQueue( "zin_oepsdatwasnietjuist");
-            soundManager.playQueue();
+            if(retry) {
+                volgendeOefening();
+            } else {
+                soundManager.addQueue( "zin_oepsdatwasnietjuist");
+                soundManager.playQueue();
+
+                retry = true;
+            }
         }
 
         System.out.println("Oefening3: checkAntwoord");

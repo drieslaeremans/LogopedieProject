@@ -74,6 +74,11 @@
     <string name="sessie_nameting_title">Nameting</string>
     <string name="sessie_oefening_title">Oefeningen</string>
     <string name="oefeningen_afsluiten">Terug naar overzicht</string>
+    <string name="sessie_overzicht_title">Sessie title</string>
+    <string name="sessie_overzicht_datum">Sessie datum</string>
+    <string name="adapter_tekst_woord">Woord</string>
+    <string name="adapter_tekst_afbeelding">Woord</string>
+    <string name="adapter_afbeeldingContentDescription">Woord</string>
 
 
 </resources>

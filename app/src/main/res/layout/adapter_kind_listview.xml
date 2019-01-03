@@ -14,13 +14,13 @@
             android:textColor="#000"
             android:id="@+id/naam"
             android:padding="10dp"
-            android:text="test"/>
+            android:text="@string/adapter_tekst_woord"/>
 
-        <ImageButton
+        <ImageView
             android:id="@+id/edit"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@android:drawable/ic_menu_search"
+            android:src="@android:drawable/ic_media_play"
             android:layout_alignParentRight="true"/>
 
 

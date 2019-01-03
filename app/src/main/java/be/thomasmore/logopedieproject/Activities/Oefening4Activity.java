@@ -34,6 +34,7 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
     private List<String> antwoorden = new ArrayList<String>();
     private Handler handler = new Handler(); // Timer
     private SoundManager soundManager;
+    private boolean retry = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,8 +124,21 @@ public class Oefening4Activity extends AppCompatActivity implements ImageView.On
 
         if(correct)
             onJuisteAntwoorden();
-        else
-            onFouteAntwoorden();
+        else {
+            if(retry) {
+                Intent intent = new Intent(this, Oefening5Activity.class);
+
+                intent.putExtra("kind", kind);
+                intent.putExtra("woord", woord);
+                oefening.setOefening4(false);
+                intent.putExtra("oefening", oefening);
+
+                startActivityForResult(intent, 1);
+            } else {
+                onFouteAntwoorden();
+                retry = true;
+            }
+        }
     }
 
     private void onJuisteAntwoorden()

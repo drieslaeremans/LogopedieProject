@@ -1,6 +1,7 @@
 package be.thomasmore.logopedieproject.Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -315,6 +316,8 @@ public class DetailsKindActivity extends AppCompatActivity {
 
                 if(woord != null)
                 {
+                    dialog.cancel();
+
                     intentPreteachPlaat.putExtra("kind", kind);
                     intentPreteachPlaat.putExtra("woord", woord);
                     intentPreteachPlaat.putExtra("groep", groep);
@@ -354,7 +357,7 @@ public class DetailsKindActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SessieOverzichtActivity.class);
         intent.putExtra("sessieId", id);
 
-        startActivity(intent);
+        startActivityForResult(intent, 4);
     }
 
     @Override
@@ -380,17 +383,7 @@ public class DetailsKindActivity extends AppCompatActivity {
             }
         } else if(requestCode == 2) {
             if (resultCode == RESULT_OK) {
-                //Todo: Oefeningen afmaken en bij elke oef oefening-object resultaat bijhouden.
-                //Todo: Na-oefening activity maken die resultaat van oefening toont?
-                //Todo: Vanuit Na-oefening activity het oefening-object meegeven als intent (analoog aan Nameting->meting->this)
                 oefening = (Oefening) intent.getSerializableExtra("oefening");
-                System.out.println("Oefening: " +oefening.isOefening1());
-                System.out.println("Oefening: " +oefening.isOefening2());
-                System.out.println("Oefening: " +oefening.isOefening3());
-                System.out.println("Oefening: " +oefening.isOefening4());
-                System.out.println("Oefening: " +oefening.isOefening5());
-                System.out.println("Oefening: " +oefening.isOefening6());
-                System.out.println("Oefening: " +oefening);
 
                 Button button = (Button) findViewById(R.id.buttonOefeningen);
                 button.setEnabled(false);
@@ -413,7 +406,10 @@ public class DetailsKindActivity extends AppCompatActivity {
 
                 button = (Button) findViewById(R.id.buttonResultaat);
                 button.setEnabled(true);
+                button.setBackgroundColor(Color.GREEN);
             }
+        } else if(requestCode == 4) {
+            finish();
         }
     }
 }

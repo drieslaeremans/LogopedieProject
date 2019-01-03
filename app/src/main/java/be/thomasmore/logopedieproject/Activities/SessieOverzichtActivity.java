@@ -108,4 +108,9 @@ public class SessieOverzichtActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
 }

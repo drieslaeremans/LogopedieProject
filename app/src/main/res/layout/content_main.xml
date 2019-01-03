@@ -10,34 +10,30 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         android:gravity="center_horizontal">
         <Button
             android:layout_margin="10dp"
-            android:width="200dp"
             android:id="@+id/buttonStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
             android:text="@string/mainactivity_button_start"
-            android:onClick="onButtonClickStart"/>
+            android:onClick="onButtonClickStart"
+            android:background="@android:color/background_light"
+            android:textColor="@android:color/black"/>
 
         <Button
             android:layout_margin="10dp"
-            android:width="200dp"
-            android:id="@+id/buttonInstellingen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mainactivity_button_instellingen"
-            android:onClick="onButtonClickInstellingen"/>
-
-        <Button
-            android:layout_margin="10dp"
-            android:width="200dp"
             android:id="@+id/buttonAfsluiten"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
             android:text="@string/mainactivity_button_afsluiten"
-            android:onClick="onButtonClickAfsluiten"/>
+            android:onClick="onButtonClickAfsluiten"
+            android:background="@android:color/background_dark"
+            android:textColor="@android:color/white"/>
 
 
 
